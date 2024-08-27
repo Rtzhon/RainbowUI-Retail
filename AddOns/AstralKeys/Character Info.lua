@@ -46,7 +46,7 @@ end
 -- @return int Highest mythic+ ran for the week
 -- @return int 0 implies no key run for the week
 function addon.GetCharacterBestLevel(id)
-	if id and AstralCharacters[id] and AstralCharacters[id].weekly_best then -- 暫時修正
+	if AstralCharacters[id] and AstralCharacters[id].weekly_best then
 		return AstralCharacters[id].weekly_best
 	else
 		return nil

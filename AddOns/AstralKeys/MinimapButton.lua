@@ -1,5 +1,5 @@
 local _, addon = ...
-local L = addon.L
+
 LibStub("AceAddon-3.0"):NewAddon(addon, "AstralKeys", "AceConsole-3.0")
 
 local astralkeysLDB = LibStub("LibDataBroker-1.1"):NewDataObject("AstralKeys", {
@@ -14,9 +14,9 @@ local astralkeysLDB = LibStub("LibDataBroker-1.1"):NewDataObject("AstralKeys", {
 		end  
 	end,
 	OnTooltipShow = function(tooltip)
-		tooltip:AddLine(L["Astral Keys"])
-		tooltip:AddLine(L['Left click to toggle main window'])
-		tooltip:AddLine(L['Right Click to toggle options'])
+		tooltip:AddLine("Astral Keys")
+		tooltip:AddLine('Left click to toggle main window')
+		tooltip:AddLine('Right Click to toggle options')
 	end,
 })
 
@@ -26,7 +26,7 @@ function addon:OnInitialize()
 	self.db = LibStub("AceDB-3.0"):New("AstralMinimap", {
 		profile = {
 			minimap = {
-				hide = AstralKeysSettings.general and not AstralKeysSettings.general.show_minimap_button.isEnabled,
+				hide = not AstralKeysSettings.general.show_minimap_button.isEnabled,
 			},
 		},
 	})

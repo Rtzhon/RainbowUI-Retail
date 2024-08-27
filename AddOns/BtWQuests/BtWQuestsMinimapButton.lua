@@ -90,7 +90,7 @@ function BtWQuestsMinimapButton_OnClick(self, button)
 end
 function BtWQuestsMinimapButton_OnEnter(self)
     GameTooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT", 32);
-    GameTooltip:SetText(L["BtWQuests"], 1, 1, 1);
+    GameTooltip:SetText("BtWQuests", 1, 1, 1);
     GameTooltip:AddLine(L["MINIMAP_TOOLTIP_MESSAGE"], nil, nil, nil, true);
     GameTooltip:Show();
 end

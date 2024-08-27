@@ -82,7 +82,7 @@ GTFO = {
 	CataclysmMode = nil; -- WoW Cataclysm client detection
 	NewSettingsUIMode = nil; -- New WoW UI Settings system
 	SoundChannels = { 
-		{ Code = "Master", Name = GTFOLocal.Master_Volume },
+		{ Code = "Master", Name = _G.MASTER_VOLUME },
 		{ Code = "SFX", Name = _G.SOUND_VOLUME, CVar = "Sound_EnableSFX" },
 		{ Code = "Ambience", Name = _G.AMBIENCE_VOLUME, CVar = "Sound_EnableAmbience" },
 		{ Code = "Music", Name = _G.MUSIC_VOLUME, CVar = "Sound_EnableMusic" },
@@ -187,7 +187,7 @@ function GTFO_OnEvent(self, event, ...)
 		if (GTFOData.DataCode ~= GTFO.DataCode) then
 			GTFO_SetDefaults();
 			GTFO_ChatPrint(string.format(GTFOLocal.Loading_NewDatabase, GTFO.Version));
-			-- GTFO_DisplayConfigPopupMessage();
+			GTFO_DisplayConfigPopupMessage();
 		end
 		GTFO.Settings = {
 			Active = GTFOData.Active;
@@ -1163,15 +1163,14 @@ function GTFO_RenderOptions()
 	if (GTFO.RetailMode) then
 		-- TWW version (TWW)
 		local ConfigurationPanel = CreateFrame("FRAME","GTFO_MainFrame");
-		ConfigurationPanel.name = GTFOLocal.Option_Name;
+		ConfigurationPanel.name = "GTFO";
 		local category, layout = Settings.RegisterCanvasLayoutCategory(ConfigurationPanel, ConfigurationPanel.name);
-		category.ID = "GTFO";
 		Settings.RegisterAddOnCategory(category);
-		-- GTFO.SettingsCategoryId = "GTFO";
+		GTFO.SettingsCategoryId = category:GetID();
 
 		local IntroMessageHeader = ConfigurationPanel:CreateFontString(nil, "ARTWORK","GameFontNormalLarge");
 		IntroMessageHeader:SetPoint("TOPLEFT", 10, -10);
-		IntroMessageHeader:SetText(GTFOLocal.Addon_Name.." GTFO "..GTFO.Version);
+		IntroMessageHeader:SetText("GTFO "..GTFO.Version);
 
 		local EnabledButton = CreateFrame("CheckButton", "GTFO_EnabledButton", ConfigurationPanel, "ChatConfigCheckButtonTemplate");
 		EnabledButton:SetPoint("TOPLEFT", 10, -35)
@@ -1341,7 +1340,7 @@ function GTFO_RenderOptions()
 
 		local IntroMessageHeader2 = IgnoreOptionsPanel:CreateFontString(nil, "ARTWORK","GameFontNormalLarge");
 		IntroMessageHeader2:SetPoint("TOPLEFT", 10, -10);
-		IntroMessageHeader2:SetText(GTFOLocal.Addon_Name.." GTFO "..GTFO.Version.." - "..GTFOLocal.UI_SpecialAlertsHeader);
+		IntroMessageHeader2:SetText("GTFO "..GTFO.Version.." - "..GTFOLocal.UI_SpecialAlertsHeader);
 
 		local yCount = -20;
 		for key, option in pairs(GTFO.IgnoreSpellCategory) do
@@ -1363,12 +1362,12 @@ function GTFO_RenderOptions()
 	elseif (GTFO.NewSettingsUIMode) then
 		-- Dragonflight version
 		local ConfigurationPanel = CreateFrame("FRAME","GTFO_MainFrame");
-		ConfigurationPanel.name = GTFOLocal.Option_Name;
+		ConfigurationPanel.name = "GTFO";
 		InterfaceOptions_AddCategory(ConfigurationPanel);
 
 		local IntroMessageHeader = ConfigurationPanel:CreateFontString(nil, "ARTWORK","GameFontNormalLarge");
 		IntroMessageHeader:SetPoint("TOPLEFT", 10, -10);
-		IntroMessageHeader:SetText(GTFOLocal.Addon_Name.." GTFO "..GTFO.Version);
+		IntroMessageHeader:SetText("GTFO "..GTFO.Version);
 
 		local EnabledButton = CreateFrame("CheckButton", "GTFO_EnabledButton", ConfigurationPanel, "ChatConfigCheckButtonTemplate");
 		EnabledButton:SetPoint("TOPLEFT", 10, -35)
@@ -1536,7 +1535,7 @@ function GTFO_RenderOptions()
 
 		local IntroMessageHeader2 = IgnoreOptionsPanel:CreateFontString(nil, "ARTWORK","GameFontNormalLarge");
 		IntroMessageHeader2:SetPoint("TOPLEFT", 10, -10);
-		IntroMessageHeader2:SetText(GTFOLocal.Addon_Name.." GTFO "..GTFO.Version.." - "..GTFOLocal.UI_SpecialAlertsHeader);
+		IntroMessageHeader2:SetText("GTFO "..GTFO.Version.." - "..GTFOLocal.UI_SpecialAlertsHeader);
 
 		local yCount = -20;
 		for key, option in pairs(GTFO.IgnoreSpellCategory) do
@@ -1558,12 +1557,12 @@ function GTFO_RenderOptions()
 	else
 		-- Classic version (pre-Dragonflight)
 		local ConfigurationPanel = CreateFrame("FRAME","GTFO_MainFrame");
-		ConfigurationPanel.name = GTFOLocal.Option_Name;
+		ConfigurationPanel.name = "GTFO";
 		InterfaceOptions_AddCategory(ConfigurationPanel);
 
 		local IntroMessageHeader = ConfigurationPanel:CreateFontString(nil, "ARTWORK","GameFontNormalLarge");
 		IntroMessageHeader:SetPoint("TOPLEFT", 10, -10);
-		IntroMessageHeader:SetText(GTFOLocal.Addon_Name.." GTFO "..GTFO.Version);
+		IntroMessageHeader:SetText("GTFO "..GTFO.Version);
 
 		local EnabledButton = CreateFrame("CheckButton", "GTFO_EnabledButton", ConfigurationPanel, "ChatConfigCheckButtonTemplate");
 		EnabledButton:SetPoint("TOPLEFT", 10, -35)
@@ -1713,7 +1712,7 @@ function GTFO_RenderOptions()
 
 		local IntroMessageHeader2 = IgnoreOptionsPanel:CreateFontString(nil, "ARTWORK","GameFontNormalLarge");
 		IntroMessageHeader2:SetPoint("TOPLEFT", 10, -10);
-		IntroMessageHeader2:SetText(GTFOLocal.Addon_Name.." GTFO "..GTFO.Version.." - "..GTFOLocal.UI_SpecialAlertsHeader);
+		IntroMessageHeader2:SetText("GTFO "..GTFO.Version.." - "..GTFOLocal.UI_SpecialAlertsHeader);
 
 		local yCount = -20;
 		for key, option in pairs(GTFO.IgnoreSpellCategory) do
@@ -1777,15 +1776,15 @@ function GTFO_RenderOptions()
 
 	if (AddonCompartmentFrame) then
 		AddonCompartmentFrame:RegisterAddon({
-			text = C_AddOns.GetAddOnMetadata("GTFO", "Title"),
+			text = "GTFO",
 			icon = "Interface\\Icons\\spell_fire_fire.blp",
 			notCheckable = true,
 			func = function(button, menuInputData, menu)
-				Settings.OpenToCategory("GTFO");
+				Settings.OpenToCategory(GTFO.SettingsCategoryId);
 			end,
 			funcOnEnter = function(button)
 				MenuUtil.ShowTooltip(button, function(tooltip)
-					tooltip:SetText(GTFOLocal.Addon_Name.." GTFO "..GTFO.Version);
+					tooltip:SetText("GTFO "..GTFO.Version);
 					tooltip:AddLine("|cFFFFFFFF"..GTFOLocal.Help_Options.."|r");
 				end)
 			end,
@@ -2108,11 +2107,13 @@ end
 
 function GTFO_Command_Options()
 	if (GTFO.RetailMode) then
-		Settings.OpenToCategory("GTFO");
+		Settings.OpenToCategory(GTFO.SettingsCategoryId);
+		Settings.OpenToCategory(GTFO.SettingsCategoryId);
+		Settings.OpenToCategory(GTFO.SettingsCategoryId);
 	else
-		InterfaceOptionsFrame_OpenToCategory(GTFOLocal.Option_Name);
-		InterfaceOptionsFrame_OpenToCategory(GTFOLocal.Option_Name);
-		InterfaceOptionsFrame_OpenToCategory(GTFOLocal.Option_Name);	
+		InterfaceOptionsFrame_OpenToCategory("GTFO");
+		InterfaceOptionsFrame_OpenToCategory("GTFO");
+		InterfaceOptionsFrame_OpenToCategory("GTFO");	
 	end
 end
 
@@ -2193,7 +2194,7 @@ function GTFO_CheckTankMode()
 			end
 		elseif ((not (GTFO.ClassicMode or GTFO.BurningCrusadeMode or GTFO.WrathMode or GTFO.CataclysmMode)) and (GTFO.PlayerClass == "MONK" or GTFO.PlayerClass == "DEMONHUNTER" or GTFO.PlayerClass == "WARRIOR" or GTFO.PlayerClass == "DEATHKNIGHT" or GTFO.PlayerClass == "PALADIN")) then
 			-- Get the exact specialization role as defined by the class
-			local spec = GetSpecialization and GetSpecialization() or nil; -- 暫時修正
+			local spec = GetSpecialization();
 			if (spec and GetSpecializationRole(spec) == "TANK") then
 				--GTFO_DebugPrint("Tank spec found - tank mode activated");
 				return true;
@@ -2217,7 +2218,7 @@ function GTFO_CheckCasterMode()
 
 		if not (GTFO.ClassicMode or GTFO.BurningCrusadeMode or GTFO.WrathMode or GTFO.CataclysmMode) then
 			-- Get the exact specialization role as defined by the class
-			local spec = GetSpecialization and GetSpecialization() or nil; -- 暫時修正
+			local spec = GetSpecialization();
 			if (spec) then
 				local role = GetSpecializationRole(spec);
 				if (role == "TANK") then

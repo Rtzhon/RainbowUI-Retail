@@ -1336,7 +1336,7 @@ L["Hardened Steel Reaver"] = "Hardened Steel Reaver"
 --[[Translation missing --]]
 L["Hardened Steel Skycaller"] = "Hardened Steel Skycaller"
 L["hardResetButton"] = "重置 MDT"
-L["hardResetPrompt"] = "是否確定要重置所有設定，恢復成預設值? \n|cFFFF0000請先將插件更新到最新版本!\n只有當 MDT 完全不會載入，或是壞掉的狀態，才重置設定。\n這樣做會刪除你的所有路線!|r\n將會需要重新載入介面!"
+L["hardResetPrompt"] = "是否確定要重置所有設定，恢復成預設值? \\n|cFFFF0000請先將插件更新到最新版本!\\n只有當 MDT 完全不會載入，或是壞掉的狀態，才重置設定。\\n這樣做會刪除你的所有路線!|r\\n將會需要重新載入介面!"
 L["hardResetPromptTitle"] = "刪除所有設定"
 L["Harlan Sweete"] = "哈兰·斯威提"
 L["Harugia the Bloodthirsty"] = "嗜血的哈鲁吉亚"
@@ -3462,6 +3462,3 @@ L["Zuraal the Ascended"] = "晋升者祖拉尔"
 --[[Translation missing --]]
 L["Zuramat the Obliterator"] = "Zuramat the Obliterator"
 
--- 自行加入
-L["Mythic Dungeon Tools"] = "傳奇+ 地城規劃工具"
-L["MythicDungeonTools"] = "地城規劃工具"

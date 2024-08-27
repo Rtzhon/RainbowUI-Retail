@@ -5097,6 +5097,3 @@ L["Zul'Gurub"] = "Zul'Gurub"
 L["Zuraal the Ascended"] = "Zuraal the Ascended"
 L["Zuramat the Obliterator"] = "Zuramat the Obliterator"
 
--- 自行加入
-L["Mythic Dungeon Tools"] = "Mythic Dungeon Tools"
-L["MythicDungeonTools"] = "Mythic Dungeon Tools"

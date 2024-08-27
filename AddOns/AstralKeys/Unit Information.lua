@@ -6,7 +6,7 @@ local UNIT_LIST = {}
 -- @param unit  Unit name and server
 -- @param unitID integer value
 function addon.SetUnitID(unit, unitID)
-	if unit then UNIT_LIST[unit] = unitID end -- 暫時修正
+	UNIT_LIST[unit] = unitID
 end
 
 -- Retrieves ID number for associated unit

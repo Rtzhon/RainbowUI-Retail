@@ -422,7 +422,7 @@ function atributo_misc:ReportSingleDeadLine(morte, instancia)
 		end
 		local _, fontSize = FCF_GetChatWindowInfo(1)
 		if (fontSize < 1) then
-			fontSize = 14
+			fontSize = 10
 		end
 		local fonte, _, flags = Details.fontstring_len:GetFont()
 		Details.fontstring_len:SetFont(fonte, fontSize, flags)
@@ -437,7 +437,7 @@ function atributo_misc:ReportSingleDeadLine(morte, instancia)
 	for index, evento in ipairs(Details.table.reverse(morte [1])) do
 		if (evento [1] and type(evento [1]) == "boolean") then --damage
 			if (evento [3]) then
-				local elapsed = _cstr("%.1f", evento [4] - time_of_death) ..Loc["s"]
+				local elapsed = _cstr("%.1f", evento [4] - time_of_death) .."s"
 				local spellname, _, spellicon = _GetSpellInfo(evento [2])
 				local spelllink
 
@@ -464,7 +464,7 @@ function atributo_misc:ReportSingleDeadLine(morte, instancia)
 			local amount = evento [3]
 
 			if (amount > Details.deathlog_healingdone_min) then
-				local elapsed = _cstr("%.1f", evento [4] - time_of_death) ..Loc["s"]
+				local elapsed = _cstr("%.1f", evento [4] - time_of_death) .."s"
 				local spelllink = GetSpellLink(evento [2])
 				local source = Details:GetOnlyName(evento [6])
 				local spellname, _, spellicon = _GetSpellInfo(evento [2])
@@ -483,7 +483,7 @@ function atributo_misc:ReportSingleDeadLine(morte, instancia)
 
 		elseif (type(evento [1]) == "number" and evento [1] == 4) then --debuff
 
-			local elapsed = _cstr("%.1f", evento [4] - time_of_death) ..Loc["s"]
+			local elapsed = _cstr("%.1f", evento [4] - time_of_death) .."s"
 			local spelllink = GetSpellLink(evento [2])
 			local source = Details:GetOnlyName(evento [6])
 			local spellname, _, spellicon = _GetSpellInfo(evento [2])
@@ -543,7 +543,7 @@ end
 local buff_format_amount = function(t)
 	local total, percent = unpack(t)
 	local m, s = _math_floor(total / 60), _math_floor(total % 60)
-	return _cstr("%.1f", percent) .. "%(" .. m .. Loc["m "] .. s .. Loc["s)"]
+	return _cstr("%.1f", percent) .. "%(" .. m .. "m " .. s .. "s)"
 end
 
 local sort_buff_report = function(t1, t2)
@@ -1578,7 +1578,7 @@ function Details:CatchRaidBuffUptime(sOperationType) -- ~scan
 		end
 
 		if (sOperationType == "BUFF_UPTIME_IN") then
-			local string_output = Loc["pre-potion: "] --localize-me
+			local string_output = "pre-potion: " --localize-me
 
 			for playername, potspellid in pairs(potUsage) do
 				local name, _, icon = _GetSpellInfo(potspellid)
@@ -1701,7 +1701,7 @@ function Details:CatchRaidBuffUptime(sOperationType) -- ~scan
 		end
 
 		if (sOperationType == "BUFF_UPTIME_IN") then
-			local string_output = Loc["pre-potion: "]
+			local string_output = "pre-potion: "
 
 			for playername, potspellid in pairs(potUsage) do
 				local auraName, _, icon = _GetSpellInfo(potspellid)
@@ -1753,7 +1753,7 @@ function Details:CatchRaidBuffUptime(sOperationType) -- ~scan
 
 		--[
 		if (sOperationType == "BUFF_UPTIME_IN") then
-			local string_output = Loc["pre-potion: "]
+			local string_output = "pre-potion: "
 			for playername, potspellid in pairs(pot_usage) do
 				local auraName, _, icon = _GetSpellInfo(potspellid)
 				local unitClass = Details:GetUnitClass(playername)
@@ -1819,13 +1819,13 @@ function atributo_misc:ToolTipDebuffUptime(instancia, numero, barra)
 
 				local minutos, segundos = _math_floor(esta_habilidade[2]/60), _math_floor(esta_habilidade[2]%60)
 				if (esta_habilidade[2] >= _combat_time) then
-					--GameCooltip:AddLine(nome_magia, minutos .. Loc["m "] .. segundos .. Loc["s"] .. " (" .. _cstr("%.1f", esta_habilidade[2] / _combat_time * 100) .. "%)", nil, "gray", "gray")
+					--GameCooltip:AddLine(nome_magia, minutos .. "m " .. segundos .. "s" .. " (" .. _cstr("%.1f", esta_habilidade[2] / _combat_time * 100) .. "%)", nil, "gray", "gray")
 					--GameCooltip:AddStatusBar(100, nil, 1, 0, 1, .3, false)
 				elseif (minutos > 0) then
-					GameCooltip:AddLine(nome_magia, minutos .. Loc["m "] .. segundos .. Loc["s"] .. " (" .. _cstr("%.1f", esta_habilidade[2] / _combat_time * 100) .. "%)")
+					GameCooltip:AddLine(nome_magia, minutos .. "m " .. segundos .. "s" .. " (" .. _cstr("%.1f", esta_habilidade[2] / _combat_time * 100) .. "%)")
 					Details:AddTooltipBackgroundStatusbar(false, esta_habilidade[2] / _combat_time * 100)
 				else
-					GameCooltip:AddLine(nome_magia, segundos .. Loc["s"] .. " (" .. _cstr("%.1f", esta_habilidade[2] / _combat_time * 100) .. "%)")
+					GameCooltip:AddLine(nome_magia, segundos .. "s" .. " (" .. _cstr("%.1f", esta_habilidade[2] / _combat_time * 100) .. "%)")
 					Details:AddTooltipBackgroundStatusbar(false, esta_habilidade[2] / _combat_time * 100)
 				end
 
@@ -1840,7 +1840,7 @@ function atributo_misc:ToolTipDebuffUptime(instancia, numero, barra)
 end
 
 function atributo_misc:ToolTipBuffUptime(instance, barFrame)
----@cast instance instance
+	---@cast instance instance
 
 	local owner = self.owner
 	if (owner and owner.classe) then
@@ -1909,10 +1909,10 @@ function atributo_misc:ToolTipBuffUptime(instance, barFrame)
 					if (uptime <= combatTime) then
 						local minutes, seconds = math.floor(uptime / 60), math.floor(uptime % 60)
 						if (minutes > 0) then
-							GameCooltip:AddLine(spellName, minutes .. Loc["m "] .. seconds .. Loc["s"] .. " (" .. format("%.1f", uptimePercent) .. "%)")
+							GameCooltip:AddLine(spellName, minutes .. "m " .. seconds .. "s" .. " (" .. format("%.1f", uptimePercent) .. "%)")
 							Details:AddTooltipBackgroundStatusbar(false, uptimePercent, true, sourceName and "green")
 						else
-							GameCooltip:AddLine(spellName, seconds .. Loc["s"] .. " (" .. format("%.1f", uptimePercent) .. "%)")
+							GameCooltip:AddLine(spellName, seconds .. "s" .. " (" .. format("%.1f", uptimePercent) .. "%)")
 							Details:AddTooltipBackgroundStatusbar(false, uptimePercent, true, sourceName and "green")
 						end
 

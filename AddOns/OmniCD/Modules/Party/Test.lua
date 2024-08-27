@@ -140,8 +140,6 @@ function TM:Test(key)
 
 		P:Refresh()
 
-		if not P.groupInfo[E.userGUID] then return end -- 暫時修正
-		
 		local frame = P.groupInfo[E.userGUID].bar
 		self.indicator.anchor:ClearAllPoints()
 		self.indicator.anchor:SetPoint("BOTTOMLEFT", frame.anchor, "BOTTOMRIGHT")
@@ -180,7 +178,7 @@ function TM:Test(key)
 		end
 
 		wipe(config)
-		if self.indicator then self.indicator:Hide() end -- 暫時修正
+		self.indicator:Hide()
 		self:UnregisterEvent('PLAYER_LEAVING_WORLD')
 
 		P:Refresh()

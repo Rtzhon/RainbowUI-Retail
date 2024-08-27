@@ -120,7 +120,7 @@ local function SyncReceive(entry)
 		week = tonumber(week)
 		timeStamp = tonumber(timeStamp)
 
-		if (week and week >= addon.Week) and addon.UnitInGuild(unit) then -- 暫時修正
+		if week >= addon.Week and addon.UnitInGuild(unit) then
 
 			local id = addon.UnitID(unit)
 			if id then

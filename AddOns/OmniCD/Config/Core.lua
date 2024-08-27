@@ -50,7 +50,7 @@ local setGlobalOption = function(info, value) E.global[ info[#info] ] = value en
 local function GetOptions()
 	if not E.options then
 		E.options = {
-			name = L["Omni|cff33ff99CD|r"],
+			name = E.AddOn,
 			type = "group",
 			args = {
 				Home = {

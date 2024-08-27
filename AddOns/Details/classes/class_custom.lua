@@ -97,7 +97,7 @@
 					DetailsFramework:SetEnvironment(func)
 					Details.custom_function_cache [instanceObject.customName] = func
 				else
-					Details:Msg(Loc["|cFFFF9900error compiling code for custom display "] .. (instanceObject.customName or "") ..  " |r:", errortext)
+					Details:Msg("|cFFFF9900error compiling code for custom display " .. (instanceObject.customName or "") ..  " |r:", errortext)
 				end
 
 				if (customObject.tooltip) then
@@ -106,7 +106,7 @@
 						DetailsFramework:SetEnvironment(tooltip_script)
 						Details.custom_function_cache [instanceObject.customName .. "Tooltip"] = tooltip_script
 					else
-						Details:Msg(Loc["|cFFFF9900error compiling tooltip code for custom display "] .. (instanceObject.customName or "") ..  " |r:", errortext)
+						Details:Msg("|cFFFF9900error compiling tooltip code for custom display " .. (instanceObject.customName or "") ..  " |r:", errortext)
 					end
 					scriptTypeName = "tooltip"
 				end
@@ -117,7 +117,7 @@
 						DetailsFramework:SetEnvironment(total_script)
 						Details.custom_function_cache [instanceObject.customName .. "Total"] = total_script
 					else
-						Details:Msg(Loc["|cFFFF9900error compiling total code for custom display "] .. (instanceObject.customName or "") ..  " |r:", errortext)
+						Details:Msg("|cFFFF9900error compiling total code for custom display " .. (instanceObject.customName or "") ..  " |r:", errortext)
 					end
 					scriptTypeName = "total"
 				end
@@ -128,7 +128,7 @@
 						DetailsFramework:SetEnvironment(percent_script)
 						Details.custom_function_cache [instanceObject.customName .. "Percent"] = percent_script
 					else
-						Details:Msg(Loc["|cFFFF9900error compiling percent code for custom display "] .. (instanceObject.customName or "") ..  " |r:", errortext)
+						Details:Msg("|cFFFF9900error compiling percent code for custom display " .. (instanceObject.customName or "") ..  " |r:", errortext)
 					end
 					scriptTypeName = "percent"
 				end
@@ -208,7 +208,7 @@
 					if (percent_script) then
 						okey, percent = pcall (percent_script, floor(actor.value), top, total, combatObject, instanceObject, actor)
 						if (not okey) then
-							Details:Msg(Loc["|cFFFF9900percent script error|r:"], percent)
+							Details:Msg("|cFFFF9900percent script error|r:", percent)
 							return Details:EndRefresh (instanceObject, 0, combatObject, combatObject [1])
 						end
 					else
@@ -218,7 +218,7 @@
 					if (total_script) then
 						local okey, value = pcall (total_script, floor(actor.value), top, total, combatObject, instanceObject, actor)
 						if (not okey) then
-							Details:Msg(Loc["|cFFFF9900total script error|r:"], value)
+							Details:Msg("|cFFFF9900total script error|r:", value)
 							return Details:EndRefresh (instanceObject, 0, combatObject, combatObject [1])
 						end
 
@@ -495,7 +495,7 @@
 				--local value, top, total, combat, instance = ...
 				okey, percent = pcall (percent_script, self.value, top, total, combat, instance, self)
 				if (not okey) then
-					Details:Msg(Loc["|cFFFF9900error on custom display function|r:"], percent)
+					Details:Msg("|cFFFF9900error on custom display function|r:", percent)
 					return Details:EndRefresh (instance, 0, combat, combat [1])
 				end
 			else
@@ -514,7 +514,7 @@
 			if (total_script) then
 				local okey, value = pcall (total_script, self.value, top, total, combat, instance, self)
 				if (not okey) then
-					Details:Msg(Loc["|cFFFF9900error on custom display function|r:"], value)
+					Details:Msg("|cFFFF9900error on custom display function|r:", value)
 					return Details:EndRefresh (instance, 0, combat, combat [1])
 				end
 
@@ -902,9 +902,9 @@
 
 	function classCustom:CreateCustomDisplayObject()
 		return setmetatable({
-			name = Loc["new custom"],
+			name = "new custom",
 			icon = [[Interface\ICONS\TEMP]],
-			author = UNKNOWN, -- 需要自行修改為大寫
+			author = "unknown",
 			attribute = "damagedone",
 			source = "[all]",
 			target = "[all]",
@@ -953,7 +953,7 @@
 				local func = Details.custom_function_cache [instanceObject.customName .. "Tooltip"]
 				local okey, errortext = pcall(func, actorObject, instanceObject.showing, instanceObject, keydown)
 				if (not okey) then
-					Details:Msg(Loc["|cFFFF9900error on custom display tooltip function|r:"], errortext)
+					Details:Msg("|cFFFF9900error on custom display tooltip function|r:", errortext)
 					return false
 				end
 			end
@@ -1513,7 +1513,7 @@
 			attribute = false,
 			spellid = false,
 			author = "Terciob",
-			desc = Loc["Show the crowd control amount for each player."],
+			desc = "Show the crowd control amount for each player.",
 			source = false,
 			target = false,
 			script_version = 12,
@@ -1617,7 +1617,7 @@
 			attribute = false,
 			spellid = false,
 			author = "Terciob",
-			desc = Loc["Show the amount of crowd control received for each player."],
+			desc = "Show the amount of crowd control received for each player.",
 			source = false,
 			target = false,
 			script_version = 4,
@@ -2256,7 +2256,7 @@
 			attribute = false,
 			spellid = false,
 			author = "Terciob",
-			desc = Loc["Show overall damage done on the fly."],
+			desc = "Show overall damage done on the fly.",
 			source = false,
 			target = false,
 			script_version = 8,
@@ -2428,7 +2428,7 @@
 			attribute = false,
 			spellid = false,
 			author = "Terciob",
-			desc = Loc["Damage done to shields"],
+			desc = "Damage done to shields",
 			source = false,
 			target = false,
 			script_version = 1,

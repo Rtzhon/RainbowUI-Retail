@@ -109,7 +109,7 @@ local function UpdateNonBNetFriendList()
 		NonBNFriend_List[name] = {isConnected = friendInfo.connected}
 		if FRIEND_LIST[name] then
 			FRIEND_LIST[name].isConnected = true
-			FRIEND_LIST[name].guid = friendInfo.guid -- 暫時修正
+			FRIEND_LIST[name].guid = guid
 		end
 	end
 
@@ -209,7 +209,7 @@ local function SyncFriendUpdate(entry, sender)
 		timeStamp = tonumber(timeStamp)
 		weekly_best = tonumber(weekly_best)
 
-		if week and week >= addon.Week then -- 暫時修正
+		if week >= addon.Week then
 			local id = addon.UnitID(unit)
 			if id then
 				AstralKeys[id].dungeon_id = dungeonID
@@ -266,7 +266,7 @@ local function PushKeysToFriends(target)
 
 	for i = 1, #AstralCharacters do
 		local id = addon.UnitID(AstralCharacters[i].unit)
-		if id and addon.UnitClass(id) then -- 暫時修正 We have a key for this character, let's get the message and queue it up
+		if id then -- We have a key for this character, let's get the message and queue it up
 			local map, level = addon.UnitMapID(id), addon.UnitKeyLevel(id)
 			messageStack[#messageStack + 1] = strformat('%s_', strformat('%s:%s:%d:%d:%d:%d:%d:%d', AstralCharacters[i].unit, addon.UnitClass(id), map, level, addon.Week, AstralKeys[id][7], AstralCharacters[i].faction, AstralCharacters[i].weekly_best)) -- name-server:class:mapID:keyLevel:week#:weekTime:faction:weekly
 		end
@@ -603,7 +603,7 @@ do
 						if id then
 							local keyLevel, dungeonID = AstralKeys[id].key_level, AstralKeys[id].dungeon_id
 							astralKeyString:SetWordWrap(false)
-							astralKeyString:SetFormattedText(L["|cffffd200Current Keystone|r\n%d - %s"], keyLevel, addon.GetMapName(dungeonID))
+							astralKeyString:SetFormattedText("|cffffd200Current Keystone|r\n%d - %s", keyLevel, addon.GetMapName(dungeonID))
 							astralKeyString:SetWordWrap(true)
 							astralKeyString:SetPoint('TOP', characterNameString, 'BOTTOM', 3, -4)
 							gameInfoString:SetPoint('TOP', astralKeyString, 'BOTTOM', 0, 0)
@@ -649,7 +649,8 @@ do
 end
 
 local function TooltipHook(self)
-    if not AstralKeysSettings.general.show_tooltip_key.isEnabled then return end
+	if not AstralKeysSettings.general.show_tooltip_key.isEnabled then return end
+
 	if self.GetUnit~=nil then 
     local _, uid = self:GetUnit()
     if not UnitIsPlayer(uid) then return end
@@ -661,8 +662,8 @@ local function TooltipHook(self)
     local id = addon.UnitID(unit)
     if id then
     	GameTooltip:AddLine(' ')
-		-- 自行修改成一行
-        GameTooltip:AddLine(L['Current Keystone']..": |cffFFFFFF"..addon.GetMapName(addon.UnitMapID(id)).." +"..addon.UnitKeyLevel(id).."|r")
+        GameTooltip:AddLine('Current Keystone')
+        GameTooltip:AddDoubleLine(addon.GetMapName(addon.UnitMapID(id)), addon.UnitKeyLevel(id), 1, 1, 1, 1, 1, 1)
         return
     end
 	end

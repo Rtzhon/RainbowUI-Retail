@@ -107,6 +107,3 @@ L["UP_TO"] = "%s up to %s"
 L["USE_SMALL_MAP_ICONS"] = "Use small icons for map pins"
 L["USE_TOMTOM_WAYPOINTS"] = "Use TomTom waypoints"
 L["WEEK_2"] = "Week 2"
-
--- 自行加入
-L["BtWQuests"] = "BtWQuests"

@@ -45,6 +45,14 @@ local unitFrameData = {
 		[6] = 0, -- Group0 for party
 	},
 	{
+		[1] = "Lime",
+		[2] = "LimeGroup%dUnitButton",
+		[3] = "unit",
+		[4] = 1,
+		[5] = 5,
+		[6] = 0,
+	},
+	{
 		[1] = "Plexus",
 		[2] = "PlexusLayoutHeader%dUnitButton",
 		[3] = "unit",
@@ -99,12 +107,6 @@ local unitFrameData = {
 		[3] = "unit",
 		[4] = 1,
 		[5] = 40,
-	},
-	{
-		[1] = "Stuf",
-		[2] = "Stuf.units.party",
-		[3] = "unit",
-		[4] = 1,
 	},
 	{
 		[1] = "AshToAsh",
@@ -266,7 +268,7 @@ local unitFrameData = {
 	},
 }
 
-local customUF = { optionTable = { auto = L["Auto"], blizz = L["Blizzard"] }, enabledList = false }
+local customUF = { optionTable = { auto = L["Auto"], blizz = "Blizzard" }, enabledList = false }
 
 function E:SetActiveUnitFrameData()
 	if customUF.enabledList then

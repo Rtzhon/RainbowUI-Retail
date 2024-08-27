@@ -1435,9 +1435,9 @@ end
 
 		local minutos, segundos = floor(uptime / 60), floor(uptime % 60)
 		if (minutos > 0) then
-			uptime = "" .. minutos .. Loc["m "] .. segundos .. Loc["s"] .. ""
+			uptime = "" .. minutos .. "m " .. segundos .. "s" .. ""
 		else
-			uptime = "" .. segundos .. Loc["s"] .. ""
+			uptime = "" .. segundos .. "s" .. ""
 		end
 
 		return Details:ToK2(value) .. " - " .. uptime .. " "
@@ -1514,9 +1514,9 @@ end
 				local actor_table = {Details:GetOnlyName(void_table[1])}
 				local m, s = _math_floor(void_table[3].uptime / 60), _math_floor(void_table[3].uptime % 60)
 				if (m > 0) then
-					actor_table [2] = FormatTooltipNumber (_, void_table[3].damage) .. " (" .. m .. Loc["m "] .. s .. Loc["s"] .. ")"
+					actor_table [2] = FormatTooltipNumber (_, void_table[3].damage) .. " (" .. m .. "m " .. s .. "s" .. ")"
 				else
-					actor_table [2] = FormatTooltipNumber (_, void_table[3].damage) .. " (" .. s .. Loc["s"] .. ")"
+					actor_table [2] = FormatTooltipNumber (_, void_table[3].damage) .. " (" .. s .. "s" .. ")"
 				end
 				t [#t+1] = actor_table
 			end
@@ -1634,9 +1634,9 @@ end
 
 			local minutos, segundos = _math_floor(debuff_table.uptime / 60), _math_floor(debuff_table.uptime % 60)
 			if (minutos > 0) then
-				GameCooltip:AddLine(Details:GetOnlyName(t[1]), FormatTooltipNumber (_, debuff_table.damage) .. " (" .. minutos .. Loc["m "] .. segundos .. Loc["s"] .. ")")
+				GameCooltip:AddLine(Details:GetOnlyName(t[1]), FormatTooltipNumber (_, debuff_table.damage) .. " (" .. minutos .. "m " .. segundos .. "s" .. ")")
 			else
-				GameCooltip:AddLine(Details:GetOnlyName(t[1]), FormatTooltipNumber (_, debuff_table.damage) .. " (" .. segundos .. Loc["s"] .. ")")
+				GameCooltip:AddLine(Details:GetOnlyName(t[1]), FormatTooltipNumber (_, debuff_table.damage) .. " (" .. segundos .. "s" .. ")")
 			end
 
 			local classe = Details:GetClass(t[1])
@@ -3632,7 +3632,7 @@ function damageClass.PredictedAugSpellsOnEnter(self)
 
 		--add the total combat time into the tooltip
 		local combatTimeMinutes, combatTimeSeconds = math.floor(combatTime / 60), math.floor(combatTime % 60)
-		GameCooltip:AddLine("Combat Time", combatTimeMinutes .. Loc["m "] .. combatTimeSeconds .. Loc["s"] .. " (" .. format("%.1f", 100) .. "%)")
+		GameCooltip:AddLine("Combat Time", combatTimeMinutes .. "m " .. combatTimeSeconds .. "s" .. " (" .. format("%.1f", 100) .. "%)")
 		GameCooltip:AddIcon([[Interface\TARGETINGFRAME\UnitFrameIcons]], nil, nil, iconSize, iconSize, iconBorderInfo.L, iconBorderInfo.R, iconBorderInfo.T, iconBorderInfo.B)
 		Details:AddTooltipBackgroundStatusbar(false, 100, true, "darkgreen")
 
@@ -3741,10 +3741,10 @@ function damageClass.PredictedAugSpellsOnEnter(self)
 					if (uptime <= combatTime) then
 						local minutes, seconds = math.floor(uptime / 60), math.floor(uptime % 60)
 						if (minutes > 0) then
-							GameCooltip:AddLine(spellName, minutes .. Loc["m "] .. seconds .. Loc["s"] .. " (" .. format("%.1f", uptimePercent) .. "%)")
+							GameCooltip:AddLine(spellName, minutes .. "m " .. seconds .. "s" .. " (" .. format("%.1f", uptimePercent) .. "%)")
 							Details:AddTooltipBackgroundStatusbar(false, uptimePercent, true, sourceName and "darkgreen")
 						else
-							GameCooltip:AddLine(spellName, seconds .. Loc["s"] .. " (" .. format("%.1f", uptimePercent) .. "%)")
+							GameCooltip:AddLine(spellName, seconds .. "s" .. " (" .. format("%.1f", uptimePercent) .. "%)")
 							Details:AddTooltipBackgroundStatusbar(false, uptimePercent, true, sourceName and "darkgreen")
 						end
 
@@ -6039,7 +6039,7 @@ local MontaDetalhesBuffProcs = function(actor, row, instance)
 						local spellApplies = spellObject.appliedamt
 						local spellRefreshes = spellObject.refreshamt
 
-						gump:SetaDetalheInfoTexto(i, 100, FormatSpellString ("" .. spellID .. " " .. spellName), "Activations: " .. spellApplies, " ", "Refreshes: " .. spellRefreshes, " ", "Uptime: " .. spellUptime .. Loc["s"])
+						gump:SetaDetalheInfoTexto(i, 100, FormatSpellString ("" .. spellID .. " " .. spellName), "Activations: " .. spellApplies, " ", "Refreshes: " .. spellRefreshes, " ", "Uptime: " .. spellUptime .. "s")
 						added = added + 1
 					end
 				end
@@ -6389,7 +6389,7 @@ function damageClass:MontaDetalhesDamageDone (spellId, spellLine, instance) --th
 			local uptime_spellid = spellTable.id
 			local debuff_uptime = misc_actor.debuff_uptime_spells and misc_actor.debuff_uptime_spells._ActorTable [uptime_spellid] and misc_actor.debuff_uptime_spells._ActorTable [uptime_spellid].uptime
 			if (debuff_uptime) then
-				hits_string = hits_string .. "  |cFFDDDD44(" .. _math_floor(debuff_uptime / breakdownWindowFrame.instancia.showing:GetCombatTime() * 100) .. Loc["% uptime)|r"]
+				hits_string = hits_string .. "  |cFFDDDD44(" .. _math_floor(debuff_uptime / breakdownWindowFrame.instancia.showing:GetCombatTime() * 100) .. "% uptime)|r"
 			end
 
 			local amountOfCasts = breakdownWindowFrame.instancia.showing:GetSpellCastAmount(self:Name(), spellName)

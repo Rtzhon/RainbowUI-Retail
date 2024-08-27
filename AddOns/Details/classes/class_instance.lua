@@ -3028,10 +3028,10 @@ function Details:GetInstanceAttributeText()
 			if (plugin_object) then
 				return plugin_object.__name
 			else
-				return Loc["Unknown Plugin"]
+				return "Unknown Plugin"
 			end
 		else
-			return Loc["Unknown Plugin"]
+			return "Unknown Plugin"
 		end
 
 	elseif (self.modo == modo_alone) then
@@ -3040,7 +3040,7 @@ function Details:GetInstanceAttributeText()
 		if (SoloInfo) then
 			return SoloInfo [1]
 		else
-			return Loc["Unknown Plugin"]
+			return "Unknown Plugin"
 		end
 	end
 end

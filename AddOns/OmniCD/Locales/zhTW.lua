@@ -197,7 +197,7 @@ L["Highlight the icon when a buffing spell is used until the buff falls off"] = 
 L["Hold Time"] = "停留時間"
 L["Horizontal"] = "水平"
 L["Horizontal + CD Groups"] = "水平 + 冷卻群組"
-L["Hotfix"] = "Hotfix"
+L["Hotfix"] = true
 L["Icon"] = "圖示"
 L["Icon Alignment"] = "圖示對齊方式"
 L["Icon ID (Optional)"] = "圖示 ID (選擇性)"
@@ -456,12 +456,3 @@ L["Weak Purple Glow"] = "淡紫色發光"
 L["You can mangage spell types for all bars from the Frame option"] = "從「框架」選項可以管理所有技能列的法術類型"
 L["You can override this setting on individual spells from the Spells tab."] = "可以在「法術」標籤頁面中的各個法術上覆蓋此設定。"
 L["You must manually enable either the 'Party Frames' or 'Raid Frames' in Blizzard's 'HUD Edit Mode'."] = "必須在遊戲內建的 '編輯模式' 中手動啟用 '隊伍框架' 或 '團隊框架'。"
-
--- 自行加入
-L["Omni|cff33ff99CD|r"] = "PvP/PvE 隊友技能冷卻監控"
-L["OmniCD"] = "隊友技能監控"
-L["Blizzard"] = "遊戲內建框架"
-L["Removing Invalid ID: |cffffd700"] = "移除無效的法術 ID: |cffffd700"
-L["Highlighting"] = "顯著標示"
-L["Type /oc or /omnicd to open the option panel."] = "輸入 /oc 或 /omnicd 打開設定選項視窗。"
-L["Open Option Panel"] = "打開設定選項"

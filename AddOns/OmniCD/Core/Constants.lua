@@ -28,7 +28,7 @@ do
 	L["Essence"] = AZERITE_ESSENCE_ITEM_TYPE or "Essence"
 	L["Max"] = MAXIMUM
 	L["Spells"] = type(SPELLS) == "string" and SPELLS or L["Spells"]
-	-- L["Highlighting"] = HIGHLIGHTING:gsub(":", "")
+	L["Highlighting"] = HIGHLIGHTING:gsub(":", "")
 	L["Custom"] = CUSTOM
 end
 

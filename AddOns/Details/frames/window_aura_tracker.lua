@@ -1,7 +1,6 @@
 
 local Details = Details
 local DF = DetailsFramework
-local Loc = _G.LibStub("AceLocale-3.0"):GetLocale("Details")
 local _
 
 --namespace
@@ -161,10 +160,10 @@ function Details.AuraTracker.CreatePanel()
     --header
     local headerTable = {
         {text = "", width = 20},
-        {text = Loc["Aura Name"], width = 162},
-        {text = Loc["Spell Id"], width = 100},
-        {text = Loc["Lua Table"], width = 200},
-        {text = Loc["Payload (Points)"], width = 296},
+        {text = "Aura Name", width = 162},
+        {text = "Spell Id", width = 100},
+        {text = "Lua Table", width = 200},
+        {text = "Payload (Points)", width = 296},
     }
     local headerOptions = {
         padding = 2,
