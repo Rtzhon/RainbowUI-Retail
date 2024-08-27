@@ -73,6 +73,8 @@ function UMPD_Init()
     UMPD.pinAlphaShort = UMPD.pinAlphaShort or 100
     UMPD.pinAlphaClamped = UMPD.pinAlphaClamped or 100
 
+    _UMPD.blizzEnabled = GetCVar('showInGameNavigation')
+
     if UMPD.autoTrackPins == nil then
         UMPD.autoTrackPins = true
     end
@@ -97,7 +99,7 @@ function UMPD_Init()
     function UMPDO.OnDefault() end
     function UMPDO.OnRefresh() end
 
-    local category, layout = Settings.RegisterCanvasLayoutCategory(UMPDO, _UMPD.addonName);
+    local category, layout = Settings.RegisterCanvasLayoutCategory(UMPDO, _UMPD.name);
     layout:AddAnchorPoint("TOPLEFT", 0, 0);
     layout:AddAnchorPoint("BOTTOMRIGHT", 0, 0);
     category.ID = UMPDO.name
@@ -173,11 +175,6 @@ function UMPD_Init()
     cbShortNumbers:SetPoint("TOPLEFT", 8, -342)
     cbShortNumbers:HookScript("OnClick", function(self,value)
         UMPD.shortNumbers = self:GetChecked()
-    end)
-    local cbBlizzNav = createCheckbox(UMPDO,GetCVar('showInGameNavigation'),"st","遊戲內導航")
-    cbBlizzNav:SetPoint("TOPLEFT", 8, -372)
-    cbBlizzNav:HookScript("OnClick", function(self,value)
-        SetCVar('showInGameNavigation', self:GetChecked())
     end)
 
     -- Notes

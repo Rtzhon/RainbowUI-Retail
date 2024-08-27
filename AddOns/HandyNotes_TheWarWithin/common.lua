@@ -17,6 +17,11 @@ ns.expansion = 11
 ----------------------------------- GROUPS ------------------------------------
 -------------------------------------------------------------------------------
 
+ns.groups.PROFESSION_TREASURES = Group('profession_treasures', 4620676, {
+    defaults = ns.GROUP_HIDDEN,
+    type = ns.group_types.EXPANSION
+})
+
 ns.groups.SKYRIDING_GLYPH = Group('skyriding_glyph', 4728198, {
     defaults = ns.GROUP_HIDDEN,
     type = ns.group_types.EXPANSION
@@ -24,16 +29,22 @@ ns.groups.SKYRIDING_GLYPH = Group('skyriding_glyph', 4728198, {
 
 -------------------------------------------------------------------------------
 
+ns.groups.BEACON_OF_HOPE = Group('beacon_of_hope', 135922, {
+    defaults = ns.GROUP_HIDDEN,
+    type = ns.group_types.ACHIEVEMENT,
+    achievement = 40308
+})
+
 ns.groups.BIBLO_ARCHIVIST = Group('biblo_archivist', 5341597, {
     defaults = ns.GROUP_HIDDEN,
     type = ns.group_types.ACHIEVEMENT,
     achievement = 40622
 })
 
-ns.groups.BEACON_OF_HOPE = Group('beacon_of_hope', 135922, {
+ns.groups.BOOKWORM = Group('bookworm', 4549129, {
     defaults = ns.GROUP_HIDDEN,
     type = ns.group_types.ACHIEVEMENT,
-    achievement = 40308
+    achievement = 40629
 })
 
 ns.groups.FLAT_EARTHEN = Group('flat_earthen', 4620670, {

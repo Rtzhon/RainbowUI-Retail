@@ -10,6 +10,9 @@ L['skyriding_glyph'] = 'Skyriding Glyph'
 L['options_icons_skyriding_glyph'] = 'Skyriding Glyphs'
 L['options_icons_skyriding_glyph_desc'] = 'Display the location of all skyriding glyphs.'
 
+L['options_icons_profession_treasures'] = 'Profession Treasures'
+L['options_icons_profession_treasures_desc'] = 'Display locations of treasures which grant profession knowledge.'
+
 L['options_icons_khaz_algar_lore_hunter'] = '{achievement:40762}'
 L['options_icons_khaz_algar_lore_hunter_desc'] = 'Display lore object locations for {achievement:40762} achievement.'
 
@@ -17,7 +20,7 @@ L['options_icons_khaz_algar_lore_hunter_desc'] = 'Display lore object locations 
 -------------------------------- ISLE OF DORN ---------------------------------
 -------------------------------------------------------------------------------
 
-L['alunira_note'] = 'Collect 10x {item:224025} and combine them into a {item:224026} to remove her {spell:451570}.'
+L['alunira_note'] = 'Collect 10x {item:224025} from mobs on the {location:Isle of Dorn} and combine them into a {item:224026} to remove her {spell:451570}.'
 L['violet_hold_prisoner'] = 'Violet Hold Prisoner'
 
 L['elemental_geode_label'] = 'Elemental Geode'
@@ -30,6 +33,9 @@ L['trees_treasure_note'] = 'Speak with {npc:222940} to get a {item:224185}. Guid
 L['turtles_thanks_1_note'] = 'Hand in 5x {item:220143} (can be fished from {object:Calm Surfacing Ripple} pools or bought from the auction house). {note:Leave the area and return immediately to hand in the next fish.}'
 L['turtles_thanks_2_note'] = 'Hand in 1x {item:222533} (can be fished from {object:Glimmerpool}, {object:Festering Rotpool}, {object:Infused Ichor Spill} pool or bought from the auction house).'
 L['turtles_thanks_3_note'] = 'Meet the {npc:223338} in {location:Dornogal} and speak with her to reveal the treasure.'
+L['web_wrapped_axe_note'] = 'On the first floor.\n\n{note:Have 1-2 Hours spawn time.}'
+
+L['cendvin_note'] = 'Farm 900x {item:225557} in {location:Cinderwold} from elite mobs to purchase the {item:223153} mount from {npc:226205}.'
 
 L['options_icons_flat_earthen'] = '{achievement:40606}'
 L['options_icons_flat_earthen_desc'] = 'Display location for {achievement:40606} achievement.'
@@ -48,9 +54,7 @@ L['not_so_quick_fix_note'] = 'Repair the busted earthen console.'
 L['water_console_location'] = 'Next to the stairs.'
 L['abyssal_console_location'] = 'In an alcove.'
 L['taelloch_console_location'] = 'On a bridge between the barrels.'
-L['obsidian_console_location'] = 'PH'
 L['lost_console_location'] = 'In an alcove.'
-L['earthen_console_location'] = 'PH'
 
 L['options_icons_notable_machines'] = '{achievement:40628}'
 L['options_icons_notable_machines_desc'] = 'Display note locations for {achievement:40628} achievement.'
@@ -122,10 +126,7 @@ L['priory_satchel_location'] = 'Loot the {object:Windswept Satchel} hanging from
 L['smugglers_treasure_note'] = 'Loot the required {item:225335} from the ({dot:Blue}) {npc:226025} below the cliff.'
 L['smugglers_treasure_location'] = 'High on the cliff between several rocks.'
 L['coral_fused_clam'] = 'Coral-Fused Clam'
-L['coral_fused_clam_note'] = [[Loot {item:218354} from the {object:Clammer's Kit} to open the Clam.
-
-{note:Requires level 80 to pick up.}
-]] -- from wowhead, needs to be reviewed
+L['coral_fused_clam_note'] = 'Loot {item:218354} from the {object:Clammer\'s Kit} to open the Clam.'
 
 L['options_icons_biblo_archivist'] = '{achievement:40622}'
 L['options_icons_biblo_archivist_desc'] = 'Display book locations for {achievement:40622} achievement.'
@@ -170,13 +171,9 @@ L['furball_location'] = 'Inside the ruined building.'
 L['dander_location'] = 'Outside.'
 L['gobbo_location'] = 'Inside the building on the bed.'
 
-L['croakit_note'] = [[To attack {npc:214757} you must first fish 10x {item:211474} from the water nearby.
-
-Once you have all the fish go to {npc:214757} and toss them to him.]] -- from wowhead, needs to be confirmed.
-L['deathtide_note'] = [[To summon him you must use {item:220123} on the {object:Ominous Altar}.
-You need to combine {item:220122} {dot:Blue} and {item:220124} {dot:Green} to get {item:220123}.
-
-{note:You need to be level 80 to pick them up.} ]] -- from wowhead, needs to be reviewed
+L['beledars_spawn_note'] = 'This rare spawns at one of several locations at a fixed interval.\n\nNext spawn in:\n{note:%s (%s)}'
+L['croakit_note'] = 'Fish up 10x {item:211474} from a nearby {object:Shadowblind Grouper School} (or purchase from the auction house) and throw them to him to make the rare attackable.'
+L['deathtide_note'] = 'Collect an {item:220122} {dot:Red} and a {item:220124} {dot:Green}. Combine them to {item:220123} to summon the rare at the {object:Ominous Altar}.'
 L['murkshade_note'] = 'Interact with the {npc:218455}.'
 
 L['options_icons_mereldar_menace'] = '{achievement:40151}'
@@ -191,6 +188,8 @@ L['options_icons_beacon_of_hope'] = '{achievement:40308}'
 L['options_icons_beacon_of_hope_desc'] = 'Display lesser keyflame locations for the {achievement:40308} achievement.'
 
 L['beacon_of_hope_note'] = 'Contribute {item:206350} to light lesser keyflames and complete the following quests.'
+
+L['parasidious_note'] = 'Purchase 1x {item:206670} from {npc:206533} (light up the {object:Lesser Keyflame} to spawn him) then go to the {location:Duskrise Acreage} and pull {npc:206870} until the rare spawns. {note: Only spawns if the {npc:206978} is in this location}.'
 
 -------------------------------------------------------------------------------
 ---------------------------------- AZJ-KAHET ----------------------------------
@@ -208,10 +207,17 @@ L['thimble_location'] = 'PH'
 L['scampering_weave_rat_location'] = 'PH'
 L['generals_scouting_shadecaster_location'] = 'PH'
 
+L['options_icons_bookworm'] = '{achievement:40629}'
+L['options_icons_bookworm_desc'] = 'Display book locations for the {achievement:40629} achievement.'
+
+L['nerubian_potion_note'] = 'Purchase a {item:225784} ({note:buff lasts 10 minutes}) from {npc:218192} for 500x {currency:3056}.'
+L['bookworm_note'] = '{note:You can also complete the achievement {achievement:40542} with the {item:225784}.}'
+L['bookworm_1_location'] = 'At the entrance of the small cave.'
+
 L['options_icons_smelling_history'] = '{achievement:40542}'
 L['options_icons_smelling_history_desc'] = 'Display book locations for {achievement:40542} achievement.'
 
-L['smelling_history_note'] = 'Buy {item:225784} from {npc:218192} for 500x {currency:3056}.'
+L['smelling_history_note'] = '{note:You can also complete the achievement {achievement:40629} with the {item:225784}.}'
 L['smelling_history_1_location'] = 'Inside the building on the counter.'
 L['smelling_history_2_location'] = 'The scroll is on a chest.'
 L['smelling_history_3_location'] = 'The scroll is on a table.'
@@ -220,7 +226,7 @@ L['smelling_history_5_location'] = 'Inside the building on a table.'
 L['smelling_history_6_location'] = 'On the bed on the south side of the room.'
 L['smelling_history_7_location'] = 'On top of a pile of books.'
 L['smelling_history_8_location'] = 'On the table next to the bed on the north side of the room.'
-L['smelling_history_9_location'] = 'PH'
+L['smelling_history_9_location'] = 'Behind the desk leaning against it right next to {npc:226024}.'
 L['smelling_history_10_location'] = 'On a bench.'
 L['smelling_history_11_location'] = 'Book is on a table next to the bed. Entrance is above the fountain.'
 L['smelling_history_12_location'] = 'Inside the building on a table.'
@@ -229,7 +235,7 @@ L['options_icons_skittershaw_spin'] = '{achievement:40727}'
 L['options_icons_skittershaw_spin_desc'] = 'Display Skittershaw route locations for {achievement:40727} achievement.'
 L['skittershaw_spin_note'] = 'Ride the {npc:224973} for a full lap around the district.\n\nThe {npc:224973} will stop at the {dot:Red} points along the route.'
 
-L['memory_cache_note'] = 'Get {spell:420847} from a nearby ({dot:Blue}) {object:Extractor Storage}. After kill the {npc:223908} to get the {item:223870} to open the {object:Memory Cache}.'
+L['memory_cache_note'] = 'Get {spell:420847} from a nearby ({dot:Red}) {object:Extractor Storage}. After kill the {npc:223908} to get the {item:223870} to open the {object:Memory Cache}.'
 L['niffen_stash_note'] = 'Located under the bridge.'
 L['trapped_trove_note'] = 'In a building that hangs from the ceiling. Avoid the spiderwebs on the floor.'
 
