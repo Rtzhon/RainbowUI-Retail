@@ -17,6 +17,17 @@ ns.expansion = 11
 ----------------------------------- GROUPS ------------------------------------
 -------------------------------------------------------------------------------
 
+ns.groups.DELVE_REWARDS = Group('delve_rewards', 4203076, {
+    defaults = ns.GROUP_HIDDEN,
+    type = ns.group_types.EXPANSION,
+    HasEnabledNodes = function() return true end
+})
+
+ns.groups.DISTURBED_EARTH = Group('disturbed_earth', 132386, {
+    defaults = ns.GROUP_HIDDEN,
+    type = ns.group_types.EXPANSION
+})
+
 ns.groups.PROFESSION_TREASURES = Group('profession_treasures', 4620676, {
     defaults = ns.GROUP_HIDDEN,
     type = ns.group_types.EXPANSION
@@ -47,10 +58,22 @@ ns.groups.BOOKWORM = Group('bookworm', 4549129, {
     achievement = 40629
 })
 
+ns.groups.FLAMEGARDS_HOPE = Group('flamegards_hope', 463526, {
+    defaults = ns.GROUP_HIDDEN,
+    type = ns.group_types.ACHIEVEMENT,
+    achievement = 20594
+})
+
 ns.groups.FLAT_EARTHEN = Group('flat_earthen', 4620670, {
     defaults = ns.GROUP_HIDDEN,
     type = ns.group_types.ACHIEVEMENT,
     achievement = 40606
+})
+
+ns.groups.GOBBLIN_WITH_GLUBLURP = Group('gobblin_with_glublurp', 5763494, {
+    defaults = ns.GROUP_HIDDEN,
+    type = ns.group_types.ACHIEVEMENT,
+    achievement = 40614
 })
 
 ns.groups.ITSY_BITSY_SPIDER = Group('itsy_bitsy_spider', 5793405, {
@@ -58,17 +81,10 @@ ns.groups.ITSY_BITSY_SPIDER = Group('itsy_bitsy_spider', 5793405, {
     type = ns.group_types.ACHIEVEMENT,
     achievement = 40624
 })
-
-ns.groups.SKITTERSHAW_SPIN = Group('skittershaw_spin', 879828, {
+ns.groups.I_ONLY_NEED_ONE_TRIP = Group('i_only_need_one_trip', 236316, {
     defaults = ns.GROUP_HIDDEN,
     type = ns.group_types.ACHIEVEMENT,
-    achievement = 40727
-})
-
-ns.groups.SMELLING_HISTORY = Group('smelling_history', 4549130, {
-    defaults = ns.GROUP_HIDDEN,
-    type = ns.group_types.ACHIEVEMENT,
-    achievement = 40542
+    achievement = 40623
 })
 
 ns.groups.KHAZ_ALGAR_LORE_HUNTER = Group('khaz_algar_lore_hunter', 4419344, {
@@ -83,16 +99,22 @@ ns.groups.LOST_AND_FOUND = Group('lost_and_found', 4635200, {
     achievement = 40618
 })
 
+ns.groups.MERELDAR_MENACE = Group('mereldar_menace', 135232, {
+    defaults = ns.GROUP_HIDDEN,
+    type = ns.group_types.ACHIEVEMENT,
+    achievement = 40151
+})
+
 ns.groups.MISSING_LYNX = Group('missing_lynx', 5689905, {
     defaults = ns.GROUP_HIDDEN,
     type = ns.group_types.ACHIEVEMENT,
     achievement = 40625
 })
 
-ns.groups.MERELDAR_MENACE = Group('mereldar_menace', 135232, {
+ns.groups.NO_HARM_FROM_READING = Group('no_harm_from_reading', 463284, {
     defaults = ns.GROUP_HIDDEN,
     type = ns.group_types.ACHIEVEMENT,
-    achievement = 40151
+    achievement = 40632
 })
 
 ns.groups.NOT_SO_QUICK_FIX = Group('not_so_quick_fix', 134067, {
@@ -113,23 +135,46 @@ ns.groups.ROCKED_TO_SLEEP = Group('rocked_to_sleep', 5788303, {
     achievement = 40504
 })
 
-ns.groups.GOBBLIN_WITH_GLUBLURP = Group('gobblin_with_glublurp', 5763494, {
-    defaults = ns.GROUP_HIDDEN,
-    type = ns.group_types.ACHIEVEMENT,
-    achievement = 40614
-})
-
 -- ns.groups.SAFARI = Group('safari', 4048818, {
 --     defaults = ns.GROUP_HIDDEN,
 --     type = ns.group_types.ACHIEVEMENT,
 --     achievement = 40194
 -- })
 
-ns.groups.DISTURBED_EARTH = Group('disturbed_earth', 132386, {
+ns.groups.SKITTERSHAW_SPIN = Group('skittershaw_spin', 879828, {
+    defaults = ns.GROUP_HIDDEN,
+    type = ns.group_types.ACHIEVEMENT,
+    achievement = 40727
+})
+
+ns.groups.SMELLING_HISTORY = Group('smelling_history', 4549130, {
+    defaults = ns.GROUP_HIDDEN,
+    type = ns.group_types.ACHIEVEMENT,
+    achievement = 40542
+})
+
+ns.groups.THE_UNSEEMING = Group('the_unseeming', 1386549, {
+    defaults = ns.GROUP_HIDDEN,
+    type = ns.group_types.ACHIEVEMENT,
+    achievement = 40633
+})
+
+ns.groups.YOU_CANT_HANG_WITH_US = Group('you_cant_hang_with_us', 5763494, {
+    defaults = ns.GROUP_HIDDEN,
+    type = ns.group_types.ACHIEVEMENT,
+    achievement = 40634
+})
+
+ns.groups.CRITTER_LOVE = Group('critter_love', 3459801, {
+    defaults = ns.GROUP_HIDDEN,
+    type = ns.group_types.ACHIEVEMENT,
+    achievement = 40475
+})
+
+ns.groups.DRAGONRACE = Group('dragonrace', 1100022, {
     defaults = ns.GROUP_HIDDEN,
     type = ns.group_types.EXPANSION
 })
-
 -------------------------------------------------------------------------------
 ---------------------------- KHAZ ALGAR LORE HUNTER ---------------------------
 -------------------------------------------------------------------------------

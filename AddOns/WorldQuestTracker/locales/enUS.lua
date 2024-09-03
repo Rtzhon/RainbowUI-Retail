@@ -2,6 +2,8 @@ local addonId = ...
 local languageTable = DetailsFramework.Language.RegisterLanguage(addonId, "enUS")
 local L = languageTable
 
+L["S_OPTTIONS_QUESTLOCATIONSCALE_BYWORLDMAP"] = "Quest Scale by World Map"
+
 L["S_SPEEDRUN"] = "Speed Run"
 L["S_SPEEDRUN_AUTO_ACCEPT"] = "Auto Accept Quests"
 L["S_SPEEDRUN_AUTO_COMPLETE"] = "Auto Complete Quests"
@@ -336,6 +338,7 @@ L["S_OPTTIONS_AUTOACCEPT_ABANDONQUEST"] = "Auto Accept Abandon Quests"
 L["S_OPTTIONS_DRAGONRACE_MINIMAP"] = "Show Track Minimap"
 L["S_OPTTIONS_DRAGONRACE_TRACKCOLOR"] = "Track Color"
 L["S_OPTTIONS_NUMERATE_QUEST"] = "Enumerate Quests"
+L["S_OPTTIONS_QUESTLOCATIONSCALE_BYWORLDMAP"] = "Quest Scale by World Map"
 L["S_OPTTIONS_TAB_DRAGONRACE_SETTINGS"] = "Dragon Race"
 L["S_OPTTIONS_TAB_GENERAL_SETTINGS"] = "General Settings"
 L["S_OPTTIONS_TAB_GROUPFINDER_SETTINGS"] = "Group Finder"
@@ -440,3 +443,4 @@ L["Wipe Blacklisted Leaders"] = "Wipe Blacklisted Leaders"
 L["Time Limit in Minutes"] = "Time Limit in Minutes"
 L["Don't show groups where created time is bigger than 'X' minutes ago."] = "Don't show groups where created time is bigger than 'X' minutes ago."
 L["options"] = "options"
+L["World quests aren't shown because you're below level 50."] = "World quests aren't shown because you're below level 50."

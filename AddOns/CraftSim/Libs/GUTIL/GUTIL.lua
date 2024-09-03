@@ -415,13 +415,27 @@ GUTIL.COLORS = {
     UNCOMMON = "ff1eff00",
     GREY = "ff9d9d9d",
     ARTIFACT = "ffe6cc80",
-    GOLD = "fffffc01",
-    SILVER = "ffdadada",
-    COPPER = "ffc9803c",
+    GOLD = "FFFFD000",
+    SILVER = "FFE4E4E4",
+    COPPER = "FFCA8A4E",
     PATREON = "ffff424D",
     WHISPER = "ffff80ff",
     WHITE = "ffffffff",
 }
+
+---@param value number
+---@return string
+function GUTIL:SeperateThousands(value)
+    local formatted = tostring(value)
+    local k
+    while true do
+        formatted, k = string.gsub(formatted, "^(-?%d+)(%d%d%d)", '%1,%2')
+        if k == 0 then
+            break
+        end
+    end
+    return formatted
+end
 
 -- Thanks to arkinventory
 function GUTIL:StripColor(text)
@@ -452,10 +466,10 @@ end
 ---@param useColor? boolean -- colors the numbers green if positive and red if negative
 ---@param percentRelativeTo number? if included: will be treated as 100% and a % value in relation to the coppervalue will be added
 ---@param separateThousands? boolean
----@param noTextures? boolean
-function GUTIL:FormatMoney(copperValue, useColor, percentRelativeTo, separateThousands, noTextures)
+---@param useTextures? boolean
+function GUTIL:FormatMoney(copperValue, useColor, percentRelativeTo, separateThousands, useTextures)
     copperValue = GUTIL:Round(copperValue) -- there is no such thing as decimal coppers (we no fuel station here)
-    local absValue = abs(copperValue)
+    local absValue = abs(copperValue) or 0
     local minusText = ""
     local color = GUTIL.COLORS.GREEN
     local percentageText = ""
@@ -469,11 +483,38 @@ function GUTIL:FormatMoney(copperValue, useColor, percentRelativeTo, separateTho
         color = GUTIL.COLORS.RED
     end
 
-    local moneyText = GetMoneyString(absValue, separateThousands)
-    if noTextures then
-        local f = self:GetFormatter()
-        local g, s, c = self:GetMoneyValuesFromCopper(absValue)
-        moneyText = g .. f.gold("g") .. " " .. s .. f.silver("s") .. " " .. c .. f.copper("c")
+    local moneyText
+    local gValue, sValue, cValue = self:GetMoneyValuesFromCopper(absValue)
+    local gString, sString, cString = tostring(gValue or 0), tostring(sValue or 0), tostring(cValue or 0)
+    if separateThousands then
+        gString = GUTIL:SeperateThousands(gValue or 0)
+        sString = GUTIL:SeperateThousands(sValue or 0)
+        cString = GUTIL:SeperateThousands(cValue or 0)
+    end
+    local f = self:GetFormatter()
+    local gSep
+    local sSep
+    local cSep
+    if useTextures then
+        -- there is a format money api but its a bit less flexible and it changes the font
+        local coinIconSize = 11
+        gSep = CreateAtlasMarkup("auctionhouse-icon-coin-gold", coinIconSize, coinIconSize)
+        sSep = CreateAtlasMarkup("auctionhouse-icon-coin-silver", coinIconSize, coinIconSize)
+        cSep = CreateAtlasMarkup("auctionhouse-icon-coin-copper", coinIconSize, coinIconSize)
+    else
+        gSep = f.gold("g")
+        sSep = f.silver("s")
+        cSep = f.copper("c")
+    end
+
+    moneyText = cString .. cSep
+
+    if sValue > 0 or gValue > 0 then
+        moneyText = sString .. sSep .. moneyText
+    end
+
+    if gValue > 0 then
+        moneyText = gString .. gSep .. moneyText
     end
 
     if useColor then

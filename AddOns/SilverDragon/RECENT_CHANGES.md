@@ -1,7 +1,6 @@
-## Changed in v2024.17
+## Changed in v2024.19
 
-* New loot for all War Within zones
-* Don't put tomtom waypoints on the world map, stick to the crazy arrow
-* Improve the tooltips for history and popups
-* Add data to show in treasure-popups in Isle of Dorn and Ringing Deeps
+* History: fixed the frame not hiding immediately at the start of combat
+* Fixed some issues with profile-switching in History and ClickTargets
+* Stop showing the marker on the popup for a rare if you mark a different rare
 

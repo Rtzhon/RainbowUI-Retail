@@ -21,6 +21,7 @@ local Toy = ns.reward.Toy
 local Transmog = ns.reward.Transmog
 local Reputation = ns.reward.Reputation
 
+local Circle = ns.poi.Circle
 local POI = ns.poi.POI
 local Path = ns.poi.Path
 
@@ -101,7 +102,8 @@ map.nodes[64560668] = Rare({
         Reputation({id = 2607, gain = 50, quest = 84081}),
         Transmog({item = 223923, type = L['plate']}), -- Gilded Cryptlord's Sabatons
         Transmog({item = 223916, type = L['polearm']}), -- Nerubian Cutthroat's Reach
-        Transmog({item = 223915, type = L['dagger']}) -- Nerubian Orator's Stiletto
+        Transmog({item = 223915, type = L['dagger']}), -- Nerubian Orator's Stiletto
+        Transmog({item = 223917, type = L['cloak']}) -- Nerubian Covert's Cloak
     },
     pois = {Path({64500582, 64650782})}
 }) -- Deepcrawler Tx'kesh
@@ -129,7 +131,7 @@ map.nodes[61232730] = Rare({
         Reputation({id = 2601, gain = 50, quest = 81699}),
         Reputation({id = 2605, gain = 50, quest = 81699}),
         Reputation({id = 2607, gain = 50, quest = 81699}),
-        Transmog({item = 223369, slot = L['back']}) -- Webspeaker's Spiritual Cloak
+        Transmog({item = 223369, slot = L['cloak']}) -- Webspeaker's Spiritual Cloak
     }
 }) -- Webspeaker Grik'ik
 
@@ -142,7 +144,9 @@ akl.nodes[65198283] = Rare({
         Reputation({id = 2605, gain = 50, quest = 84079}),
         Reputation({id = 2607, gain = 50, quest = 84079}),
         Transmog({item = 223941, type = L['plate']}), -- Nerubian Cultivator's Girdle
-        Transmog({item = 223915, type = L['dagger']}) -- Nerubian Orator's Stiletto
+        Transmog({item = 223916, type = L['polearm']}), -- Nerubian Cutthroat's Reach
+        Transmog({item = 223915, type = L['dagger']}), -- Nerubian Orator's Stiletto
+        Transmog({item = 223917, type = L['cloak']}) -- Nerubian Covert's Cloak
     },
     pois = {
         Path({
@@ -162,6 +166,8 @@ akl.nodes[67438318] = Rare({
         Reputation({id = 2605, gain = 50, quest = 84077}),
         Reputation({id = 2607, gain = 50, quest = 84077}),
         Transmog({item = 223950, type = L['leather']}), -- Corruption Sifter's Treads
+        Transmog({item = 223916, type = L['polearm']}), -- Nerubian Cutthroat's Reach
+        Transmog({item = 223915, type = L['dagger']}), -- Nerubian Orator's Stiletto
         Transmog({item = 223917, type = L['cloak']}) -- Nerubian Covert's Cloak
     },
     parent = map.id
@@ -177,7 +183,8 @@ map.nodes[62400703] = Rare({ -- renamed by Blizzard?
         Reputation({id = 2607, gain = 50, quest = 84082}),
         Transmog({item = 223939, type = L['cloth']}), -- Esteemed Nerubian's Mantle
         Transmog({item = 223916, type = L['polearm']}), -- Nerubian Cutthroat's Reach
-        Transmog({item = 223915, type = L['dagger']}) -- Nerubian Orator's Stiletto
+        Transmog({item = 223915, type = L['dagger']}), -- Nerubian Orator's Stiletto
+        Transmog({item = 223917, type = L['cloak']}) -- Nerubian Covert's Cloak
     },
     pois = {Path({62870495, 62610615, 62400703, 62070804, 61830851, 61160787})}
 
@@ -249,9 +256,9 @@ map.nodes[43863678] = Rare({
         Reputation({id = 2601, gain = 50, quest = 81694}),
         Reputation({id = 2605, gain = 50, quest = 81694}),
         Reputation({id = 2607, gain = 50, quest = 81694}),
-        Transmog({item = 223378, type = L['cloth']}), -- Footguards of the Nerubian Twins
-        Transmog({item = 223407, type = L['cloth']}), -- Sabatons of the Nerubian Twins
-        Transmog({item = 223408, type = L['cloth']}), -- Treads of the Nerubian Twins
+        Transmog({item = 223378, type = L['plate']}), -- Footguards of the Nerubian Twins
+        Transmog({item = 223407, type = L['mail']}), -- Sabatons of the Nerubian Twins
+        Transmog({item = 223408, type = L['leather']}), -- Treads of the Nerubian Twins
         Transmog({item = 223406, type = L['cloth']}) -- Slippers of the Nerubian Twins
     },
     pois = {
@@ -336,6 +343,7 @@ cotl.nodes[67525826] = Rare({
         Reputation({id = 2601, gain = 50, quest = 84070}),
         Reputation({id = 2605, gain = 50, quest = 84070}),
         Reputation({id = 2607, gain = 50, quest = 84070}),
+        Transmog({item = 221239, type = L['gun']}), -- Spider Blasting Blunderbuss
         Transmog({item = 221221, type = L['plate']}), -- Venomous Lurker's Greathelm
         Transmog({item = 221506, type = L['cloak']}) -- Arachnid's Web-Sown Guise
     }
@@ -351,7 +359,10 @@ map.nodes[63479504] = Rare({
         Reputation({id = 2601, gain = 50, quest = 85167}),
         Reputation({id = 2605, gain = 50, quest = 85167}),
         Reputation({id = 2607, gain = 50, quest = 85167}),
-        Transmog({item = 221247, type = L['crossbow']}) -- Cavernous Critter Shooter
+        Transmog({item = 221247, type = L['crossbow']}), -- Cavernous Critter Shooter
+        Transmog({item = 221246, type = L['staff']}), -- Fierce Beast Staff
+        Transmog({item = 221251, type = L['2h_axe']}), -- Bestial Underground Cleaver
+        Transmog({item = 225998, type = L['cloak']}) -- Earthen Adventurer's Cloak
     },
     pois = {POI({65309350})} -- Entrance
 }) -- The One Left
@@ -364,6 +375,8 @@ map.nodes[62816618] = Rare({
         Reputation({id = 2601, gain = 50, quest = 85166}),
         Reputation({id = 2605, gain = 50, quest = 85166}),
         Reputation({id = 2607, gain = 50, quest = 85166}),
+        Transmog({item = 221240, type = L['1h_sword']}), -- Nerubian Stagshell Gouger
+        Transmog({item = 221252, type = L['2h_sword']}), -- Nerubian Slayer's Claymore
         ns.reward.Item({item = 225952, quest = 83627})
     } -- starts the questchain to get the Siesbarg mount.
 }) -- Tka'ktath
@@ -920,6 +933,118 @@ cot.nodes[65255720] = SkittershawSpin({
                 color = 'Red'
             })
         }
+    }
+})
+
+-----------------------------------------------------------------------------------------------------
+--------------------- ACHIEVEMENT: NO HARM EVER CAME FROM READING A BOOK  ---------------------------
+-----------------------------------------------------------------------------------------------------
+
+local NoHarmFromReading = Class('no_harm_from_reading', Collectible, {
+    icon = 463284,
+    group = ns.groups.NO_HARM_FROM_READING,
+    rewards = {Achievement({id = 40632, criteria = 0, oneline = true})}
+})
+
+cotl.nodes[68195603] = NoHarmFromReading({
+    label = '{achievement:40632}',
+    note = L['no_harm_from_reading_note'],
+    pois = {
+        POI({
+            points = {72035705}, -- Cave entrance
+            color = 'Yellow'
+        }), POI({
+            points = {66735661}, -- Spider Wall
+            color = 'Red'
+        })
+    },
+    parent = {
+        {
+            id = cot.id,
+            pois = {
+                POI({
+                    points = {72035705}, -- Cave entrance
+                    color = 'Yellow'
+                })
+            }
+        }, {
+            id = map.id,
+            pois = {
+                POI({
+                    points = {56468493}, -- Cave entrance
+                    color = 'Yellow'
+                })
+            }
+        }
+    }
+})
+
+map.nodes[24205274] = NoHarmFromReading({
+    id = 227421,
+    quest = 83744,
+    questDeps = 83741
+}) -- Another You 1
+
+map.nodes[58692012] = NoHarmFromReading({
+    id = 227421,
+    quest = 83745,
+    questDeps = 83741
+}) -- Another You 2
+
+map.nodes[78896056] = NoHarmFromReading({
+    id = 227421,
+    quest = 83746,
+    questDeps = 83741
+}) -- Another You 3
+
+map.nodes[56874401] = NoHarmFromReading({
+    id = 227421,
+    note = L['another_you_4_note'],
+    quest = 83747,
+    questDeps = 83741,
+    pois = {
+        Path({
+            points = {
+                57414429, 57324406, 57164432, 56874401, 56604340, 56514327,
+                56344326, 56264336, 56694303
+            }
+        })
+    }
+}) -- Another You 4
+
+-------------------------------------------------------------------------------
+-------------------------- ACHIEVEMENT: THE UNSEEMING -------------------------
+-------------------------------------------------------------------------------
+
+akl.nodes[62848495] = Collectible({
+    icon = 1386549,
+    label = '{achievement:40633}',
+    note = L['the_unseeming_note'],
+    group = ns.groups.THE_UNSEEMING,
+    rewards = {Achievement({id = 40633})},
+    parent = map.id
+})
+
+-------------------------------------------------------------------------------
+--------------------- ACHIEVEMENT: YOU CAN'T HANG WITH US ---------------------
+-------------------------------------------------------------------------------
+
+cot.nodes[53622079] = Collectible({
+    icon = 237431,
+    label = '{achievement:40634}',
+    note = L['you_cant_hang_with_us_note'],
+    group = ns.groups.YOU_CANT_HANG_WITH_US,
+    parent = {
+        id = map.id,
+        pois = {
+            Path({Circle({origin = 50047228, radius = 3.5})}),
+            Path({Circle({origin = 54397843, radius = 2.5})})
+        }
+    },
+    rewards = {Achievement({id = 40634})},
+    pois = {
+        Path({Circle({origin = 53622079, radius = 10})}),
+        Path({Circle({origin = 66123842, radius = 7.4})})
     }
 })
 

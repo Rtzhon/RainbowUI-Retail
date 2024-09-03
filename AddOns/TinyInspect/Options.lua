@@ -86,17 +86,17 @@ local options = {
       },
       subtype = {
         xpos = 490, ypos = -50,
+        { key = "Other" },
         { key = "Bag" },
         { key = "Bank" },
-        { key = "Merchant" },
-        { key = "Trade" },
         { key = "AltEquipment" },
-        { key = "GuildBank" },
         { key = "GuildNews" },
-        { key = "PaperDoll" },
         -- { key = "Chat" },
-        { key = "Loot" },
-        -- { key = "Other" },
+        -- { key = "GuildBank" },
+        { key = "Merchant" },
+        -- { key = "Trade" },
+        { key = "PaperDoll" },
+        -- { key = "Loot" },
       },
       anchorkey = "ItemLevelAnchorPoint",
     },
@@ -359,7 +359,7 @@ LibEvent:attachEvent("VARIABLES_LOADED", function()
         end
     end
     -- SimpleItemLevel 相容性
-	if C_AddOns.IsAddOnLoaded("SimpleItemLevel") then TinyInspectReforgedDB.EnableItemLevel  = false end
+	if C_AddOns.IsAddOnLoaded("SimpleItemLevel") then TinyInspectDB.EnableItemLevel  = false end
 	
 	InitCheckbox(frame)
 end)

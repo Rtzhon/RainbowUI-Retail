@@ -53,6 +53,7 @@ WorldQuestTracker.MapData.ZoneIDs = {
 		DORN = 			2248,
 		AZJKAHET = 		2255,
 		HALLOWFALL = 	2215,
+		CITYTHREADS = 	2213,
 
 	--Dragonflight
 		DRAGONISLES = 	1978,
@@ -124,6 +125,7 @@ WorldQuestTracker.DotLineScale = {
 	[zoneIDs.DORN] = 3,
 	[zoneIDs.AZJKAHET] = 3,
 	[zoneIDs.HALLOWFALL] = 3,
+	[zoneIDs.CITYTHREADS] = 3,
 }
 
 --all zones with world quests
@@ -133,6 +135,7 @@ WorldQuestTracker.MapData.WorldQuestZones = {
 		[zoneIDs.AZJKAHET] = true,
 		[zoneIDs.HALLOWFALL] = true,
 		[zoneIDs.AZJKAHET] = true,
+		[zoneIDs.CITYTHREADS] = true,
 
 	--Dragonflight
 		[zoneIDs.AZURESSPAN] = 		true,
@@ -214,13 +217,13 @@ WorldQuestTracker.MapData.ExpMaps = {
 }
 
 WorldQuestTracker.MapData.HubMapIconsScale = {
-	[zoneIDs.DRAGONISLES] = 1,
+	[zoneIDs.DRAGONISLES] = 0.85,
 	[zoneIDs.THESHADOWLANDS] = 1,
-	[zoneIDs.ZANDALAR] = 1,
-	[zoneIDs.KULTIRAS] = 1,
+	[zoneIDs.ZANDALAR] = 0.9,
+	[zoneIDs.KULTIRAS] = 0.9,
 	[zoneIDs.AZEROTH] = 1,
-	[zoneIDs.BROKENISLES] = 0.8,
-	[zoneIDs.KHAZALGAR] = 0.8,
+	[zoneIDs.BROKENISLES] = 0.30,
+	[zoneIDs.KHAZALGAR] = 0.95,
 }
 
 --list of map ids for world quest hubs

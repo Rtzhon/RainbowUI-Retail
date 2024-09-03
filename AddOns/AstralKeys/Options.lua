@@ -4,7 +4,7 @@ L = addon.L
 local AstralOptionsFrame = CreateFrame('FRAME', 'AstralOptionsFrame', UIParent)
 AstralOptionsFrame:SetFrameStrata('DIALOG')
 AstralOptionsFrame:SetFrameLevel(5)
-AstralOptionsFrame:SetHeight(455)
+AstralOptionsFrame:SetHeight(485)
 AstralOptionsFrame:SetWidth(650)
 AstralOptionsFrame:SetPoint('CENTER', UIParent, 'CENTER')
 AstralOptionsFrame:SetMovable(true)
@@ -20,7 +20,7 @@ AstralOptionsFrame:Hide()
 
 local menuBar = CreateFrame('FRAME', '$parentMenuBar', AstralOptionsFrame)
 menuBar:SetWidth(50)
-menuBar:SetHeight(455)
+menuBar:SetHeight(485)
 menuBar:SetPoint('TOPLEFT', AstralOptionsFrame, 'TOPLEFT')
 menuBar.texture = menuBar:CreateTexture(nil, 'BACKGROUND')
 menuBar.texture:SetAllPoints(menuBar)
@@ -93,7 +93,7 @@ showMinimap:SetScript('OnClick', function(self)
 	else
 		addon.icon:Hide('AstralKeys')
 	end
-	if IsAddOnLoaded('ElvUI_Enhanced') then -- Update the layout for the minimap buttons
+	if C_AddOns.IsAddOnLoaded('ElvUI_Enhanced') then -- Update the layout for the minimap buttons
 		ElvUI[1]:GetModule('MinimapButtons'):UpdateLayout()
 	end
 	end)

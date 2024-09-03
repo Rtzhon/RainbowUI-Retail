@@ -4,6 +4,7 @@ local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
 local isClassic = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
 local isWrath = (WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC)
 local isCata = (WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC)
+local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
 
 
 ham.myPlayer = ham.Player.new()
@@ -12,6 +13,7 @@ local spellsMacroString = ''
 local itemsMacroString = ''
 local macroStr = ''
 local resetType = "combat"
+local shortestCD = nil
 
 local function addPlayerHealingItemIfAvailable()
   for i, value in ipairs(ham.myPlayer.getHealingItems()) do
@@ -35,6 +37,17 @@ local function addHealthstoneIfAvailable()
     if ham.healthstone.getCount() > 0 then
       table.insert(ham.itemIdList, ham.healthstone.getId())
     end
+    if ham.demonicHealthstone.getCount() > 0 then
+      table.insert(ham.itemIdList, ham.demonicHealthstone.getId())
+      if HAMDB.cdReset then
+        if shortestCD == nil then
+          shortestCD = 60
+        end
+        if 60 < shortestCD then
+          shortestCD = 60
+        end
+      end
+    end
   end
 end
 
@@ -55,8 +68,14 @@ function ham.updateHeals()
   ham.spellIDs = ham.myPlayer.getHealingSpells()
 
   addPlayerHealingItemIfAvailable()
-  addHealthstoneIfAvailable()
-  addPotIfAvailable()
+  -- lower the priority of healthstones in insatanced content if selected
+  if HAMDB.raidStone and IsInInstance() then
+    addPotIfAvailable()
+    addHealthstoneIfAvailable()
+  else
+    addHealthstoneIfAvailable()
+    addPotIfAvailable()
+  end
 end
 
 local function createMacroIfMissing()
@@ -66,11 +85,31 @@ local function createMacroIfMissing()
   end
 end
 
+local function setShortestSpellCD(newSpell)
+  if HAMDB.cdReset then
+    local cd
+    cd = GetSpellBaseCooldown(newSpell) / 1000
+    if shortestCD == nil then
+      shortestCD = cd
+    end
+    if cd < shortestCD then
+      shortestCD = cd
+    end
+  end
+end
+
+local function setResetType()
+  if HAMDB.cdReset == true and shortestCD ~= nil then
+    resetType = "combat/" .. shortestCD
+  else
+    resetType = "combat"
+  end
+end
+
 local function buildSpellMacroString()
   spellsMacroString = ''
 
   if next(ham.spellIDs) ~= nil then
-    local shortestCD = nil
     for i, spell in ipairs(ham.spellIDs) do
       local name
       if isRetail == true then
@@ -79,20 +118,8 @@ local function buildSpellMacroString()
         name = GetSpellInfo(spell)
       end
 
-      if HAMDB.cdReset then
-        local cd
-        if isRetail == true then
-          cd = C_Spell.GetSpellCooldown(spell).duration
-        else
-          cd = GetSpellBaseCooldown(spell)
-        end
-        if shortestCD == nil then
-          shortestCD = cd
-        end
-        if cd < shortestCD then
-          shortestCD = cd
-        end
-      end
+      setShortestSpellCD(spell)
+
       --TODO HEALING Elixir Twice because it has two charges ?! kinda janky but will work for now
       if spell == ham.healingElixir then
         name = name .. ", " .. name
@@ -103,20 +130,16 @@ local function buildSpellMacroString()
         spellsMacroString = spellsMacroString .. ", " .. name;
       end
     end
-    --add if ham.cdReset == true then combat/spelltime
-    if HAMDB.cdReset then
-      resetType = "combat/" .. shortestCD
-    end
   end
 end
 
 local function buildItemMacroString()
   if next(ham.itemIdList) ~= nil then
-    for i, v in ipairs(ham.itemIdList) do
+    for i, name in ipairs(ham.itemIdList) do
       if i == 1 then
-        itemsMacroString = "item:" .. v;
+        itemsMacroString = "item:" .. name;
       else
-        itemsMacroString = itemsMacroString .. ", " .. "item:" .. v;
+        itemsMacroString = itemsMacroString .. ", " .. "item:" .. name;
       end
     end
   end
@@ -129,6 +152,7 @@ function ham.updateMacro()
     resetType = "combat"
     buildItemMacroString()
     buildSpellMacroString()
+    setResetType()
     macroStr = "#showtooltip \n/castsequence reset=" .. resetType .. " "
     if spellsMacroString ~= "" then
       macroStr = macroStr .. spellsMacroString
@@ -140,11 +164,12 @@ function ham.updateMacro()
       macroStr = macroStr .. itemsMacroString
     end
   end
+
   createMacroIfMissing()
   EditMacro(macroName, macroName, nil, macroStr)
 end
 
-local onCombat = true
+local inCombat = true
 local updateFrame = CreateFrame("Frame")
 updateFrame:RegisterEvent("BAG_UPDATE")
 updateFrame:RegisterEvent("PLAYER_LOGIN")
@@ -156,18 +181,19 @@ updateFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 updateFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
 updateFrame:SetScript("OnEvent", function(self, event, ...)
   if event == "PLAYER_LOGIN" then
-    onCombat = false
+    inCombat = false
   end
   if event == "PLAYER_REGEN_DISABLED" then
-    onCombat = true
+    inCombat = true
     return
   end
   if event == "PLAYER_REGEN_ENABLED" then
-    onCombat = false
+    inCombat = false
   end
 
-  if onCombat == false then
+  if inCombat == false then
     ham.updateHeals()
     ham.updateMacro()
+    ham.settingsFrame:updatePrio()
   end
 end)

@@ -1,9 +1,13 @@
 # Edit Mode Expanded
 
-## [11.0-011](https://github.com/teelolws/EditModeExpanded/tree/11.0-011) (2024-08-26)
-[Full Changelog](https://github.com/teelolws/EditModeExpanded/compare/11.0-010...11.0-011) [Previous Releases](https://github.com/teelolws/EditModeExpanded/releases)
+## [11.0-013](https://github.com/teelolws/EditModeExpanded/tree/11.0-013) (2024-08-28)
+[Full Changelog](https://github.com/teelolws/EditModeExpanded/compare/11.0-012...11.0-013) [Previous Releases](https://github.com/teelolws/EditModeExpanded/releases)
 
-- Add combat checks to mana bar hide  
-    https://github.com/teelolws/EditModeExpanded/issues/141  
-- Update GameMenu.lua  
-- Delay Game Menu init until its actually made visible  
+- Testing potential fix for taint issue  
+    Report if taint continues to happen (with steps to reproduce) or if this causes other errors  
+- Update PlayerFrame.lua  
+- Update AlertFrame.lua  
+    https://github.com/teelolws/EditModeExpanded/issues/135#issuecomment-2313643906  
+- Alert Frame changes  
+    https://github.com/teelolws/EditModeExpanded/issues/135#issuecomment-2313643906  
+- Update Raid.lua  

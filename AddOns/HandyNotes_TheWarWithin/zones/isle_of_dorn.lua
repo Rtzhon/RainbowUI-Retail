@@ -19,9 +19,10 @@ local Item = ns.reward.Item
 local Mount = ns.reward.Mount
 local Pet = ns.reward.Pet
 local Recipe = ns.reward.Recipe
+local Reputation = ns.reward.Reputation
+local Section = ns.reward.Section
 local Toy = ns.reward.Toy
 local Transmog = ns.reward.Transmog
-local Reputation = ns.reward.Reputation
 
 local Circle = ns.poi.Circle
 local Path = ns.poi.Path
@@ -42,13 +43,14 @@ map.nodes[23335817] = Rare({
     note = L['alunira_note'],
     rewards = {
         Achievement({id = 40435, criteria = 68225}),
-        Reputation({id = 2590, gain = 150, quest = 82196}),
+        Reputation({id = 2590, gain = 150, quest = 85158}),
         Mount({item = 223270, id = 2176}) -- Alunira
     }
 }) -- Alunira
 
 map.nodes[41077616] = Rare({ -- get path
     id = 219264,
+    quest = 81893, -- One Time Kill
     rewards = {
         Achievement({id = 40435, criteria = 68214}),
         Reputation({id = 2590, gain = 150, quest = 81893}),
@@ -97,7 +99,8 @@ map.nodes[25784503] = Rare({
     rewards = {
         Achievement({id = 40435, criteria = 68218}),
         Reputation({id = 2590, gain = 150, quest = 84029}),
-        Transmog({item = 221208, slot = L['leather']}) -- Unseen Cutthroat's Tunic
+        Transmog({item = 221208, slot = L['leather']}), -- Unseen Cutthroat's Tunic
+        Transmog({item = 221235, slot = L['cloak']}) -- Dark Agent's Cloak
     }
 }) -- Escaped Cutthroat
 
@@ -107,7 +110,8 @@ map.nodes[63984054] = Rare({ -- get path
     rewards = {
         Achievement({id = 40435, criteria = 68223}),
         Reputation({id = 2590, gain = 150, quest = 84034}),
-        Transmog({item = 221244, slot = L['mail']}) -- Flamekeeper's Footpads
+        Transmog({item = 221244, slot = L['mail']}), -- Flamekeeper's Footpads
+        Transmog({item = 221249, slot = L['1h_mace']}) -- Kobold Rodent Squasher
     }
 }) -- Flamekeeper Graz
 
@@ -116,7 +120,10 @@ map.nodes[53527998] = Rare({
     quest = 81899, -- 84028
     rewards = {
         Achievement({id = 40435, criteria = 68217}),
-        Reputation({id = 2590, gain = 150, quest = 84028})
+        Reputation({id = 2590, gain = 150, quest = 84028}),
+        Transmog({item = 221248, type = L['1h_axe']}), -- Deep Terror Carver
+        Transmog({item = 221255, type = L['dagger']}), -- Sharpened Scalepiercer
+        Transmog({item = 221222, type = L['cloth']}) -- Water-Imbued Spaulders
     }
 }) -- Gar'loc
 
@@ -126,7 +133,9 @@ map.nodes[48212701] = Rare({
     rewards = {
         Achievement({id = 40435, criteria = 68220}),
         Reputation({id = 2590, gain = 150, quest = 84031}),
-        Transmog({item = 221210, slot = L['plate']}) -- Grips of the Earth
+        Transmog({item = 221210, slot = L['plate']}), -- Grips of the Earth
+        Transmog({item = 221507, slot = L['cloak']}), -- Earth Golem's Wrap
+        Transmog({item = 221254, slot = L['polearm']}) -- Earthshatter Lance
     }
 }) -- Kronolith, Might of the Mountain
 
@@ -135,7 +144,11 @@ map.nodes[73004009] = Rare({
     quest = 81921, -- 84039
     rewards = {
         Achievement({id = 40435, criteria = 68231}),
-        Reputation({id = 2590, gain = 150, quest = 84039})
+        Reputation({id = 2590, gain = 150, quest = 84039}),
+        Transmog({item = 223948, slot = L['plate']}), -- Stubborn Wolf's Greathelm
+        Transmog({item = 221251, type = L['2h_axe']}), -- Bestial Underground Cleaver
+        Transmog({item = 221247, type = L['crossbow']}), -- Cavernous Critter Shooter
+        Transmog({item = 221246, type = L['staff']}) -- Fierce Beast Staff
     }
 }) -- Matriarch Charfuria
 
@@ -146,7 +159,9 @@ map.nodes[50876975] = Rare({
         Achievement({id = 40435, criteria = 68216}),
         Reputation({id = 2590, gain = 150, quest = 84026}),
         Transmog({item = 221213, slot = L['cloth']}), -- Shawl of the Plagued
-        Transmog({item = 221247, slot = L['crossbow']}) -- Cavernous Critter Shooter
+        Transmog({item = 221251, type = L['2h_axe']}), -- Bestial Underground Cleaver
+        Transmog({item = 221247, type = L['crossbow']}), -- Cavernous Critter Shooter
+        Transmog({item = 221246, type = L['staff']}) -- Fierce Beast Staff
     }
 }) -- Plaguehart
 
@@ -156,7 +171,10 @@ map.nodes[35657489] = Rare({ -- get path
     rewards = {
         Achievement({id = 40435, criteria = 68210}),
         Reputation({id = 2590, gain = 150, quest = 78619}),
-        Transmog({item = 223367, slot = L['leather']}) -- Cuffs of the Titancap
+        Transmog({item = 223365, slot = L['plate']}), -- Wristguards of the Titancap
+        Transmog({item = 223367, slot = L['leather']}), -- Cuffs of the Titancap
+        Transmog({item = 223366, slot = L['mail']}), -- Bracers of the Titancap
+        Transmog({item = 223364, slot = L['cloth']}) -- Wristwraps of the Titancap
     },
     pois = {
         Path({
@@ -184,7 +202,9 @@ map.nodes[74422804] = Rare({
     rewards = {
         Achievement({id = 40435, criteria = 68221}),
         Reputation({id = 2590, gain = 150, quest = 84032}),
-        Transmog({item = 221224, slot = L['plate']})
+        Transmog({item = 221224, slot = L['plate']}), -- Bouldershell Waistguard
+        Transmog({item = 221248, type = L['1h_axe']}), -- Deep Terror Carver
+        Transmog({item = 221255, type = L['dagger']}) -- Sharpened Scalepiercer
     }
 }) -- Shallowshell the Clacker
 
@@ -206,7 +226,9 @@ map.nodes[69853850] = Rare({
     quest = 81922, -- 84038
     rewards = {
         Achievement({id = 40435, criteria = 68230}),
-        Reputation({id = 2590, gain = 150, quest = 84038})
+        Reputation({id = 2590, gain = 150, quest = 84038}),
+        Transmog({item = 223929, slot = L['cloth']}), -- Honey Sweetener's Squeezers
+        Transmog({item = 223920, slot = L['shield']}) -- Slime Deflecting Stopper
     }
 }) -- Sweetspark the Oozeful
 
@@ -215,7 +237,9 @@ map.nodes[56891601] = Rare({
     quest = 81901, -- 84030
     rewards = {
         Achievement({id = 40435, criteria = 68219}),
-        Reputation({id = 2590, gain = 150, quest = 84030})
+        Reputation({id = 2590, gain = 150, quest = 84030}),
+        Transmog({item = 221230, slot = L['mail']}), -- Storm Bindings
+        Transmog({item = 221236, slot = L['shield']}) -- Stormbreaker's Shield
     },
     pois = {Path({56891601, 57401625, 57761653})}
 }) -- Tempest Lord Incarnus
@@ -225,7 +249,9 @@ map.nodes[72913794] = Rare({
     quest = 81923, -- 84037
     rewards = {
         Achievement({id = 40435, criteria = 68229}),
-        Reputation({id = 2590, gain = 150, quest = 84037})
+        Reputation({id = 2590, gain = 150, quest = 84037}),
+        Transmog({item = 223937, slot = L['leather']}), -- Honey Deliverer's Leggings
+        Transmog({item = 223922, slot = L['cloak']}) -- Cinder Pollen Cloak
     },
     pois = {Path({73823883, 73463864, 71373784})}
 }) -- Tephratennae
@@ -236,7 +262,9 @@ map.nodes[57122241] = Rare({
     rewards = {
         Achievement({id = 40435, criteria = 68222}),
         Reputation({id = 2590, gain = 150, quest = 84033}),
-        Transmog({item = 221219, slot = L['leather']}) -- Silkwing Trousers
+        Transmog({item = 221219, slot = L['leather']}), -- Silkwing Trousers
+        Transmog({item = 221239, slot = L['gun']}), -- Spider Blasting Blunderbuss
+        Transmog({item = 221506, slot = L['cloak']}) -- Arachnid's Web-Sown Guise
     }
 }) -- Twice-Stinger the Wretched
 
@@ -254,18 +282,21 @@ map.nodes[30905239] = Rare({
                 {id = 68226, quest = 82203} -- Zovex
             }
         }), --
-        Reputation({id = 2590, gain = 150, quest = 85160, note = '{npc:222378}'}),
-        Reputation({id = 2590, gain = 150, quest = 85161, note = '{npc:222380}'}),
-        Reputation({id = 2590, gain = 150, quest = 85159, note = '{npc:219284}'}),
-        Transmog({item = 226111, type = L['staff'], note = '{npc:222378}'}), -- Arakkoan Ritual Staff
-        Transmog({item = 226113, type = L['1h_sword'], note = '{npc:222378}'}), -- Kereke's Flourishing Sabre
-        Transmog({item = 226114, type = L['polearm'], note = '{npc:222378}'}), -- Windslicer's Lance
-        Transmog({item = 226112, type = L['1h_sword'], note = '{npc:222380}'}), -- Rotfist Flesh Carver
-        Transmog({item = 226115, type = L['2h_axe'], note = '{npc:222380}'}), -- Contaminating Cleaver
-        Transmog({item = 226116, note = '{npc:222380}'}), -- Coagulating Phlegm Churner
-        Transmog({item = 226117, type = L['offhand'], note = '{npc:219284}'}), -- Dalaran Guardian's Arcanotool
-        Transmog({item = 226118, type = L['fist'], note = '{npc:219284}'}), -- Arcane Prisoner's Puncher
-        Transmog({item = 226119, type = L['crossbow'], note = '{npc:219284}'}) -- Arcane Sharpshooter's Crossbow
+        Section('{npc:222378}'), -- Kereke
+        Reputation({id = 2590, gain = 150, quest = 85160}),
+        Transmog({item = 226113, type = L['1h_sword']}), -- Kereke's Flourishing Sabre
+        Transmog({item = 226114, type = L['polearm']}), -- Windslicer's Lance
+        Transmog({item = 226111, type = L['staff']}), -- Arakkoan Ritual Staff
+        Section('{npc:222380}'), -- Rotfist
+        Reputation({id = 2590, gain = 150, quest = 85161}),
+        Transmog({item = 226116}), -- Coagulating Phlegm Churner
+        Transmog({item = 226115, type = L['2h_axe']}), -- Contaminating Cleaver
+        Transmog({item = 226112, type = L['1h_sword']}), -- Rotfist Flesh Carver
+        Section('{npc:219284}'), -- Zovex
+        Reputation({id = 2590, gain = 150, quest = 85159}),
+        Transmog({item = 226119, type = L['crossbow']}), -- Arcane Sharpshooter's Crossbow
+        Transmog({item = 226118, type = L['fist']}), -- Arcane Prisoner's Puncher
+        Transmog({item = 226117, type = L['offhand']}) -- Dalaran Guardian's Arcanotool
     }
 }) -- Violet Hold Prisoner (Kereke, Rotfist, Zovex)
 
@@ -292,7 +323,7 @@ map.nodes[56833477] = Rare({
 
 -------------------------------------------------------------------------------
 
-map.nodes[46153217] = Rare({id = 220846, quest = 81515}) -- Rowdy Rubble
+-- map.nodes[46153217] = Rare({id = 220846, quest = 81515}) -- Rowdy Rubble
 
 -------------------------------------------------------------------------------
 ---------------------------------- TREASURES ----------------------------------
@@ -301,7 +332,7 @@ map.nodes[46153217] = Rare({id = 220846, quest = 81515}) -- Rowdy Rubble
 map.nodes[59122348] = Treasure({ -- You may have to wait until it spawns.
     quest = 82715,
     -- vignette = 6293,
-    note = L['in_building'] .. '' .. L['web_wrapped_axe_note'],
+    note = L['in_building'] .. ' ' .. L['web_wrapped_axe_note'],
     rewards = {
         Achievement({id = 40434, criteria = 68209}),
         Reputation({id = 2590, gain = 150, quest = 82715}),
@@ -467,6 +498,17 @@ dor.nodes[58283026] = TurtlesThanks({
     note = L['turtles_thanks_3_note']
 })
 
+map.nodes[31445130] = Treasure({
+    quest = 83094,
+    label = '{npc:225537}',
+    requires = {
+        ns.requirement.Reputation(1272, 33600, false, true),
+        ns.requirement.Quest(30526)
+    },
+    note = L['faithful_dog_note'],
+    rewards = {Pet({item = 224766, id = 4596})}
+}) -- Faithful Dog
+
 -------------------------------------------------------------------------------
 
 -- map.nodes[61901680] = Treasure({
@@ -558,7 +600,7 @@ dor.nodes[34845219] = PT.Jewelcrafting({
     id = 226317,
     parent = map.id
 }) -- Earthen Gem Pliers
-dor.nodes[59242352] = PT.Leatherworking({
+dor.nodes[68252334] = PT.Leatherworking({
     quest = 83898,
     id = 226324,
     parent = map.id

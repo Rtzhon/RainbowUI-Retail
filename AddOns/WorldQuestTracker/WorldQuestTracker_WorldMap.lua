@@ -186,7 +186,7 @@ local onleave_scale_animation = function(self, scale)
 	local originalScale = self.OriginalScale
 
 	if (self.OnLeaveAnimation.ScaleAnimation.SetScaleFrom) then
-		self.OnLeaveAnimation.ScaleAnimation:SetScaleFrom(currentScale, currentScale)
+		self.OnLeaveAnimation.ScaleAnimation:SetScaleFrom(currentScale, currentScale) --error bad argument #1 to 'SetScaleFrom' (Usage: self:SetScaleFrom(scale))
 		self.OnLeaveAnimation.ScaleAnimation:SetScaleTo(originalScale, originalScale)
 	else
 		self.OnLeaveAnimation.ScaleAnimation:SetFromScale(currentScale, currentScale)
@@ -913,7 +913,7 @@ function WorldQuestTracker.UpdateWorldWidget(widget, questID, numObjectives, map
 	widget.IsCriteria = isCriteria
 	widget.TimeLeft = timeLeft
 
-	local bAwardReputation = C_QuestLog.DoesQuestAwardReputationWithFaction(questID, factionID)
+	local bAwardReputation = C_QuestLog.DoesQuestAwardReputationWithFaction(questID or 0, factionID or 0)
 	if (not bAwardReputation) then
 		widget.FactionID = nil
 		factionID = nil
@@ -1151,6 +1151,10 @@ function WorldQuestTracker.UpdateWorldWidget(widget, questID, numObjectives, map
 	if (okay) then
 		local conduitType, borderTexture, borderColor, itemLink = WorldQuestTracker.GetConduitQuestData(questID)
 		WorldQuestTracker.UpdateBorder(widget, rarity, worldQuestType, nil, nil, nil, conduitType, borderTexture, borderColor, itemLink)
+	else
+		widget.texture:SetTexture([[Interface\Icons\INV_Misc_QuestionMark]])
+		widget.amountText:SetText("")
+		widget.IconText = ""
 	end
 
 	return okay, amountGold, amountResources, amountAPower
@@ -1176,14 +1180,14 @@ function WorldQuestTracker.BuildMapChildrenTable(parentMap, t)
 	t = t or {}
 	local newChildren = {}
 	for mapID, mapTable in pairs(WorldQuestTracker.mapTables) do
-		if (mapTable.show_on_map [parentMap]) then
-			t [mapID] = true
-			newChildren [mapID] = true
+		if (mapTable.show_on_map[parentMap]) then
+			t[mapID] = true
+			newChildren[mapID] = true
 		end
 	end
 
 	if (next(newChildren)) then
-		for newMapChildren, _ in pairs(newChildren) do
+		for newMapChildren in pairs(newChildren) do
 			WorldQuestTracker.BuildMapChildrenTable(newMapChildren, t)
 		end
 	end
@@ -1191,6 +1195,15 @@ function WorldQuestTracker.BuildMapChildrenTable(parentMap, t)
 	return t
 end
 
+WorldQuestTracker.POIPins = {}
+--hide all poi pins
+function WorldQuestTracker.HideAllPOIPins()
+	for i = 1, #WorldQuestTracker.POIPins do
+		WorldQuestTracker.POIPins[i]:Hide()
+	end
+end
+
+local worldQuestLockedIndex = 1
 -- ~world -- ~update
 function WorldQuestTracker.UpdateWorldQuestsOnWorldMap(noCache, showFade, isQuestFlaggedRecheck, forceCriteriaAnimation, questList)
 	if (UnitLevel("player") < 50) then --this has to be improved
@@ -1199,9 +1212,57 @@ function WorldQuestTracker.UpdateWorldQuestsOnWorldMap(noCache, showFade, isQues
 		--> show a message telling why world quests aren't shown
 		if (WorldQuestTracker.db.profile and not WorldQuestTracker.db.profile.low_level_tutorial) then
 			WorldQuestTracker.db.profile.low_level_tutorial = true
-			WorldQuestTracker:Msg("World quests aren't shown because you're below level 50.") --> localize-me
+			WorldQuestTracker:Msg(L["World quests aren't shown because you're below level 50."]) --> localize-me
 		end
 		return
+	end
+
+	WorldQuestTrackerDataProvider:GetMap():RemoveAllPinsByTemplate("WorldQuestTrackerPOIPinTemplate")
+
+	for poiId, poiInfo in pairs(WorldQuestTracker.db.profile.pins_discovered["worldquest-Capstone-questmarker-epic-Locked"]) do
+		---@cast poiInfo wqt_poidata
+		local worldMapID = WorldQuestTracker.GetCurrentMapAreaID()
+
+		if (poiInfo.continentID == worldMapID) then
+			--double check if the quest is on the map
+			if (C_AreaPoiInfo.GetAreaPOIInfo(poiInfo.mapID, poiInfo.poiID)) then
+				local pin = WorldQuestTrackerDataProvider:GetMap():AcquirePin("WorldQuestTrackerPOIPinTemplate")
+
+				if (not pin.widget) then
+					local button = WorldQuestTracker.CreateZoneWidget(worldQuestLockedIndex, "WorldQuestTrackerLockedQuestButton", worldFramePOIs) --, "WorldQuestTrackerPOIPinTemplate"
+					button.IsWorldZoneQuestButton = true
+					button:SetPoint("center", pin, "center", 0, 0)
+					worldQuestLockedIndex = worldQuestLockedIndex + 1
+					pin.button = button
+					pin.widget = button
+					pin:SetSize(20, 20)
+
+					button:SetScript("OnEnter", function(self)
+						GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT")
+						if (poiInfo.tooltipSetId) then
+							GameTooltip_AddWidgetSet(GameTooltip, poiInfo.tooltipSetId, 0)
+						end
+						GameTooltip:Show()
+					end)
+
+					button:SetScript("OnHide", function(self)
+						GameTooltip:Hide()
+					end)
+
+					button.UpdateTooltip = nil
+
+					WorldQuestTracker.POIPins[#WorldQuestTracker.POIPins+1] = button
+				end
+
+				WorldQuestTracker.ResetWorldQuestZoneButton(pin.button)
+				pin:SetPosition(poiInfo.worldX, poiInfo.worldY)
+				pin.button.Texture:SetMask("")
+				pin.button.Texture:SetAtlas("worldquest-Capstone-questmarker-epic-Locked")
+				pin.button.Texture:SetSize(32, 32)
+				pin.button.poiInfo = poiInfo
+				pin.button:Show()
+			end
+		end
 	end
 
 	WorldQuestTracker.RefreshStatusBarVisibility()
@@ -1388,14 +1449,14 @@ function WorldQuestTracker.UpdateWorldQuestsOnWorldMap(noCache, showFade, isQues
 		end
 
 		--quantidade de quest para a faccao
-		configTable.factionFrame.amount = factionAmountForEachMap [mapId]
+		configTable.factionFrame.amount = factionAmountForEachMap[mapId]
 	end
 
 	--force retry in case the game just opened and the server might not has sent all quests
-	forceRetryForHub [WorldMapFrame.mapID] = forceRetryForHub [WorldMapFrame.mapID] or forceRetryForHubAmount
-	if (forceRetryForHub [WorldMapFrame.mapID] > 0) then
+	forceRetryForHub[WorldMapFrame.mapID] = forceRetryForHub[WorldMapFrame.mapID] or forceRetryForHubAmount
+	if (forceRetryForHub[WorldMapFrame.mapID] > 0) then
 		needAnotherUpdate = true
-		forceRetryForHub [WorldMapFrame.mapID] = forceRetryForHub [WorldMapFrame.mapID] - 1
+		forceRetryForHub[WorldMapFrame.mapID] = forceRetryForHub[WorldMapFrame.mapID] - 1
 	end
 
 	if (needAnotherUpdate) then
@@ -1562,7 +1623,7 @@ local scheduledIconUpdate = function(questTable)
 
 	local pinScale = DF:MapRangeClamped(rangeValues[1], rangeValues[2], rangeValues[3], rangeValues[4], mapScale)
 
-	local finalScaleScalar = WorldQuestTracker.MapData.HubMapIconsScale[WorldMapFrame.mapID] or 1
+	local finalScaleScalar = WorldQuestTracker.db.profile.world_map_hubscale[WorldMapFrame.mapID] or 1
 	pinScale = pinScale * finalScaleScalar
 
 	if (WorldMapFrame.mapID == WorldQuestTracker.MapData.ZoneIDs.THESHADOWLANDS) then

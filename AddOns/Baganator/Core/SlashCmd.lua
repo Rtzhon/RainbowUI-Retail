@@ -66,6 +66,18 @@ function addonTable.SlashCmd.ResetCategories()
   ReloadUI()
 end
 
+function addonTable.SlashCmd.RemoveUnusedCategories()
+  local customCategories = addonTable.Config.Get(addonTable.Config.Options.CUSTOM_CATEGORIES)
+  local displayOrder = addonTable.Config.Get(addonTable.Config.Options.CATEGORY_DISPLAY_ORDER)
+  for name in pairs(customCategories) do
+    if tIndexOf(displayOrder, name) == nil then
+      customCategories[name] = nil
+    end
+  end
+  addonTable.Config.Set(addonTable.Config.Options.CUSTOM_CATEGORIES, CopyTable(customCategories))
+  addonTable.Utilities.Message(BAGANATOR_L_REMOVED_UNUSED_CATEGORIES)
+end
+
 function addonTable.SlashCmd.CustomiseUI()
   addonTable.CallbackRegistry:TriggerEvent("ShowCustomise")
 end
@@ -75,6 +87,7 @@ local COMMANDS = {
   ["config"] = addonTable.SlashCmd.Config,
   ["reset"] = addonTable.SlashCmd.Reset,
   ["resetcategories"] = addonTable.SlashCmd.ResetCategories,
+  ["removeunusedcategories"] = addonTable.SlashCmd.RemoveUnusedCategories,
   [""] = addonTable.SlashCmd.CustomiseUI,
   ["search"] = function(text)
     addonTable.CallbackRegistry:TriggerEvent("SearchTextChanged", text)
@@ -82,9 +95,11 @@ local COMMANDS = {
   end,
   ["keywords"] = function()
     addonTable.Config.Set(addonTable.Config.Options.DEBUG_KEYWORDS, not addonTable.Config.Get(addonTable.Config.Options.DEBUG_KEYWORDS))
+    addonTable.Utilities.Message(BAGANATOR_L_KEYWORDS_IN_TOOLTIPS_X:format(addonTable.Config.Get(addonTable.Config.Options.DEBUG_KEYWORDS) and BAGANATOR_L_ENABLED or BAGANATOR_L_DISABLED))
   end,
   ["categories"] = function()
     addonTable.Config.Set(addonTable.Config.Options.DEBUG_CATEGORIES, not addonTable.Config.Get(addonTable.Config.Options.DEBUG_CATEGORIES))
+    addonTable.Utilities.Message(BAGANATOR_L_CATEGORIES_IN_TOOLTIPS_X:format(addonTable.Config.Get(addonTable.Config.Options.DEBUG_CATEGORIES) and BAGANATOR_L_ENABLED or BAGANATOR_L_DISABLED))
   end,
 }
 function addonTable.SlashCmd.Handler(input)
